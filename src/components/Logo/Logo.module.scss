@@ -1,0 +1,17 @@
+@use '@/styles/variables.scss' as *;
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .logoImage {
+    width: 30px;
+  }
+
+  .title {
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: $text-color;
+  }
+}

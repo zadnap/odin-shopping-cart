@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Logo component > should render logo to match snapshot 1`] = `
+<div>
+  <a
+    class="_logo_5ff345"
+    data-discover="true"
+    href="/"
+  >
+    <img
+      alt="Homepage"
+      class="_logoImage_5ff345"
+      src="/src/assets/logo.png"
+    />
+    <h1
+      class="_title_5ff345"
+    >
+      Cinemart
+    </h1>
+  </a>
+</div>
+`;
