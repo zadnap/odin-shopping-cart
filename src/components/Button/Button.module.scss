@@ -1,0 +1,23 @@
+@use '@/styles/variables.scss' as *;
+
+.button {
+  color: $text-color;
+  background-color: $subbackground-color;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 20px;
+
+  &.round {
+    border-radius: 100px;
+  }
+
+  &.square {
+    padding: 10px 15px;
+  }
+
+  &.active {
+    color: $background-color;
+    background-color: $text-color;
+  }
+}
