@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navigation component > should render to match snapshot 1`] = `
+<div>
+  <nav
+    class="_navigation_0efb96"
+  >
+    <li>
+      <a
+        class="_navItem_a6b845 _active_a6b845"
+        data-discover="true"
+        href="/"
+      >
+        <span
+          data-testid="fa-icon"
+        />
+        Home
+      </a>
+    </li>
+    <li>
+      <a
+        class="_navItem_a6b845 "
+        data-discover="true"
+        href="/favourtites"
+      >
+        <span
+          data-testid="fa-icon"
+        />
+        Favourites
+      </a>
+    </li>
+    <li>
+      <a
+        class="_navItem_a6b845 "
+        data-discover="true"
+        href="/upcoming"
+      >
+        <span
+          data-testid="fa-icon"
+        />
+        Coming Soon
+      </a>
+    </li>
+    <li>
+      <a
+        class="_navItem_a6b845 "
+        data-discover="true"
+        href="/trending"
+      >
+        <span
+          data-testid="fa-icon"
+        />
+        Trending
+      </a>
+    </li>
+  </nav>
+</div>
+`;
