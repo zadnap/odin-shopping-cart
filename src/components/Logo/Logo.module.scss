@@ -3,7 +3,7 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 
   .logoImage {
     width: 30px;
@@ -11,7 +11,8 @@
 
   .title {
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: $text-color;
+    letter-spacing: 5px;
   }
 }

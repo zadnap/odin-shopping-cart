@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header component > should render to match snapshot 1`] = `
+<div>
+  <header
+    class="_header_d975ee"
+  >
+    <a
+      class="_logo_5ff345"
+      data-discover="true"
+      href="/"
+    >
+      <img
+        alt="Homepage"
+        class="_logoImage_5ff345"
+        src="/src/assets/logo.png"
+      />
+      <h1
+        class="_title_5ff345"
+      >
+        Cinemart
+      </h1>
+    </a>
+    <div
+      class="_inputContainer_9af53b"
+    >
+      <span
+        data-testid="fa-icon"
+      />
+      <input
+        class="_input_9af53b"
+        placeholder="Movies, series, shows..."
+        type="text"
+      />
+    </div>
+    <button
+      class="_button_ee73f7  "
+    >
+      <span
+        data-testid="fa-icon"
+      />
+    </button>
+  </header>
+</div>
+`;
