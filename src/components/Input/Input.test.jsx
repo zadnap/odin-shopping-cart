@@ -14,7 +14,7 @@ describe('Input component', () => {
 
   it('should render with an icon', () => {
     render(<Input />);
-    const icon = screen.getByTestId('inputIcon');
+    const icon = screen.getByTestId('fa-icon');
 
     expect(icon).toBeInTheDocument();
   });

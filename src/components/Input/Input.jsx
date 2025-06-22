@@ -11,11 +11,7 @@ function Input({
 }) {
   return (
     <div className={styles.inputContainer}>
-      <FontAwesomeIcon
-        icon={icon}
-        className={styles.icon}
-        data-testid="inputIcon"
-      />
+      <FontAwesomeIcon icon={icon} className={styles.icon} />
       <input
         type={type}
         className={styles.input}
