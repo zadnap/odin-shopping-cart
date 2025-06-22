@@ -1,0 +1,44 @@
+@use '@/styles/variables.scss' as *;
+
+.movieCard {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &:hover .movieInfo .title {
+    text-decoration: underline;
+  }
+
+  .poster {
+    height: 250px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+  .movieInfo {
+    .title {
+      font-size: 1.6rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 400;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .movieMeta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      .year {
+        color: $subtext-color;
+      }
+      .rating {
+        color: yellow;
+      }
+    }
+  }
+}
