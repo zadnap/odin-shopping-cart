@@ -1,2 +1,7 @@
+@use '@/styles/variables.scss' as *;
+
 .navigation {
+  position: fixed;
+  background-color: $background-color;
+  width: 250px;
 }

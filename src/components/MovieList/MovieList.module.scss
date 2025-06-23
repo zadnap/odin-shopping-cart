@@ -1,7 +1,19 @@
+@use '@/styles/variables.scss' as *;
+
 .movieList {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  flex: 1;
+
+  .tagList {
+    display: flex;
+    gap: 10px;
+  }
+
   .listGrid {
     display: grid;
-    gap: 15px;
+    gap: $gap;
     padding: 0;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     .movieItem {
