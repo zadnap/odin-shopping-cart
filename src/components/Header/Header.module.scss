@@ -6,6 +6,7 @@
   padding: $gap $gap $gap calc($gap + 10px);
   position: sticky;
   top: 0;
+  z-index: 2;
   background-color: $background-color;
 
   .searchBar {

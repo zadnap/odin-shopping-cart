@@ -5,6 +5,149 @@ exports[`MovieList component > should render to match snapshot 1`] = `
   <section
     class="_movieList_6d935e"
   >
+    <div
+      class="_genreFilter_6d935e"
+    >
+      <ul
+        class="_tagList_6d935e"
+      >
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Trending
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Adventure
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Action
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Comedy
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Crime
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Drama
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Fantasy
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Fantasy
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Fantasy
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Fantasy
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Fantasy
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Fantasy
+          </button>
+        </li>
+        <li
+          class="_tag_6d935e"
+        >
+          <button
+            class="_button_ee73f7  "
+          >
+            Fantasy
+          </button>
+        </li>
+      </ul>
+      <div
+        class="_navigator_6d935e"
+      >
+        <button
+          class="_button_ee73f7  "
+        >
+          <span
+            data-testid="fa-icon"
+          />
+        </button>
+        <button
+          class="_button_ee73f7  "
+        >
+          <span
+            data-testid="fa-icon"
+          />
+        </button>
+      </div>
+    </div>
     <ul
       class="_listGrid_6d935e"
     >
