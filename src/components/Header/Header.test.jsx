@@ -1,16 +1,22 @@
 import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Header from './Header';
 
 describe('Header component', () => {
-  it('should render to match snapshot', () => {
-    const { container } = render(
+  it('should render a logo, a search bar and a cart button', () => {
+    render(
       <MemoryRouter>
         <Header />
       </MemoryRouter>
     );
 
-    expect(container).toMatchSnapshot();
+    const logo = screen.getByRole('link');
+    const searchBar = screen.getByRole('textbox');
+    const cartButton = screen.getByRole('button');
+
+    expect(logo).toBeInTheDocument();
+    expect(searchBar).toBeInTheDocument();
+    expect(cartButton).toBeInTheDocument();
   });
 });

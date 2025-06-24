@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavItem component > should render to match snapshot 1`] = `
+<div>
+  <a
+    class="_navItem_a6b845 "
+    data-discover="true"
+    href="/movies"
+  >
+    <span
+      data-testid="fa-icon"
+    />
+    Movies
+  </a>
+</div>
+`;

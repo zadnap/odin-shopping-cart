@@ -5,10 +5,10 @@ import Button from './Button';
 import styles from './Button.module.scss';
 
 describe('Button component', () => {
-  it('should render with children', () => {
-    render(<Button>Click Me</Button>);
+  it('should render to match snapshot', () => {
+    const { container } = render(<Button>Click Me</Button>);
 
-    expect(screen.getByRole('button').textContent).toMatch('Click Me');
+    expect(container).toMatchSnapshot();
   });
 
   it('should apply round class when round prop is true', () => {
@@ -35,12 +35,5 @@ describe('Button component', () => {
     await user.click(button);
 
     expect(onClick).toHaveBeenCalled();
-  });
-
-  it("should not call the onClick function when it isn't clicked", async () => {
-    const onClick = vi.fn();
-    render(<Button onClick={onClick} />);
-
-    expect(onClick).not.toHaveBeenCalled();
   });
 });

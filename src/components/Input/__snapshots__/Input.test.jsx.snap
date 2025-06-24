@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Input component > should render to match snapshot 1`] = `
+<div>
+  <div
+    class="_inputContainer_9af53b"
+  >
+    <span
+      data-testid="fa-icon"
+    />
+    <input
+      class="_input_9af53b"
+      type="text"
+      value="Hi"
+    />
+  </div>
+</div>
+`;

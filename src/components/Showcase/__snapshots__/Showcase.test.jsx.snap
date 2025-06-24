@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Showcase component > should render to match snapshot 1`] = `
+<div>
+  <article
+    class="_showcase_43ad9d"
+    style="background-image: url("https://image.tmdb.org/t/p/original/7HqLLVjdjhXS0Qoz1SgZofhkIpE.jpg");"
+  >
+    <ul
+      class="_tagList_43ad9d"
+    >
+      <li
+        class="_tag_43ad9d"
+      >
+        Action
+      </li>
+      <li
+        class="_tag_43ad9d"
+      >
+        Movie
+      </li>
+      <li
+        class="_tag_43ad9d"
+      >
+        2025
+      </li>
+      <li
+        class="_tag_43ad9d"
+      >
+        6+
+      </li>
+    </ul>
+    <div
+      class="_movieInfo_43ad9d"
+    >
+      <h1
+        class="_title_43ad9d"
+      >
+        How to Train Your Dragon
+      </h1>
+      <p
+        class="_desc_43ad9d"
+      >
+        <span
+          class="_clampText_43ad9d"
+        >
+          On the rugged isle of Berk, where Vikings
+        </span>
+         
+        <a
+          class="_seeMore_43ad9d"
+          data-discover="true"
+          href="/movies/1"
+        >
+          See more
+        </a>
+      </p>
+    </div>
+  </article>
+</div>
+`;

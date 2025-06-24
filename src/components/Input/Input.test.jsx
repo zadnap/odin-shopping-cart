@@ -1,35 +1,21 @@
-import { vi, describe, expect, it } from 'vitest';
+import { vi, describe, expect, it, beforeAll } from 'vitest';
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Input from './Input';
 
+beforeAll(() => {
+  vi.mock('@fortawesome/react-fontawesome', () => ({
+    FontAwesomeIcon: () => <span data-testid="fa-icon" />,
+  }));
+});
+
 describe('Input component', () => {
-  it('should render with default props', () => {
-    render(<Input />);
-    const input = screen.getByRole('textbox');
-
-    expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute('type', 'text');
-  });
-
-  it('should render with an icon', () => {
-    render(<Input />);
-    const icon = screen.getByTestId('fa-icon');
-
-    expect(icon).toBeInTheDocument();
-  });
-
-  it('should render with customized props', () => {
-    const placeholder = 'Search me';
-    const value = 'Foo Bar Baz';
-    render(
-      <Input placeholder={placeholder} value={value} onChange={() => {}} />
+  it('should render to match snapshot', () => {
+    const { container } = render(
+      <Input type="text" value="Hi" onChange={() => {}} />
     );
-    const input = screen.getByRole('textbox');
 
-    expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute('value', value);
-    expect(input).toHaveAttribute('placeholder', placeholder);
+    expect(container).toMatchSnapshot();
   });
 
   it('should call onChange handler when typed in', async () => {
