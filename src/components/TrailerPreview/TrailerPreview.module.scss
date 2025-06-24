@@ -1,0 +1,76 @@
+@use '@/styles/variables.scss' as *;
+
+.trailerPreview {
+  cursor: pointer;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 10px;
+  border-radius: $border-radius;
+  margin: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 140px;
+  color: $text-color;
+
+  .title {
+    position: absolute;
+    font-size: 1.5rem;
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity ease 0.1s;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .rating {
+      color: yellow;
+    }
+  }
+
+  .playBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity ease 0.1s;
+
+    .icon {
+      font-size: 3rem;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $overlay-color;
+  }
+
+  &:hover {
+    .title {
+      text-decoration: underline;
+    }
+    .info,
+    .playBtn {
+      opacity: 1;
+    }
+  }
+}

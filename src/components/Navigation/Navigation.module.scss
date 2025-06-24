@@ -1,7 +1,19 @@
 @use '@/styles/variables.scss' as *;
 
 .navigation {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  overflow-y: auto;
+  top: 68.5px;
+  bottom: $gap;
   position: fixed;
   background-color: $background-color;
   width: $navigation-width;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
