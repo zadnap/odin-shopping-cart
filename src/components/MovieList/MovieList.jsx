@@ -1,73 +1,75 @@
-import MovieCard from '@/components/MovieCard/MovieCard';
-import Button from '@/components/Button/Button';
 import styles from './MovieList.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
+import FilteredMovieList from '@/components/FilteredMovieList/FilteredMovieList';
+import GenreFilter from '@/components/GenreFilter/GenreFilter';
 
-function MovieList({ movies }) {
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+function MovieList() {
+  const [genreId, setGenreId] = useState(28);
+  const [genres, setGenres] = useState([]);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
+        );
+
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+
+        setGenres(data.genres);
+      } catch (error) {
+        console.error('Failed to fetch genres:', error);
+      }
+    };
+
+    fetchGenres();
+  }, []);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
+        );
+
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+
+        const mappedMovies = data.results.map((movie) => {
+          return {
+            id: movie.id,
+            title: movie.title,
+            year: movie.release_date.slice(0, 4),
+            rating: movie.vote_average.toFixed(1),
+            posterSrc: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
+          };
+        });
+
+        setMovies(mappedMovies);
+      } catch (error) {
+        console.error('Failed to fetch movies:', error);
+      }
+    };
+
+    fetchMovies();
+  }, [genreId]);
+
   return (
     <section className={styles.movieList}>
-      <div className={styles.genreFilter}>
-        <ul className={styles.tagList}>
-          <li className={styles.tag}>
-            <Button>Trending</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Adventure</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Action</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Comedy</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Crime</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Drama</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Fantasy</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Fantasy</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Fantasy</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Fantasy</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Fantasy</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Fantasy</Button>
-          </li>
-          <li className={styles.tag}>
-            <Button>Fantasy</Button>
-          </li>
-        </ul>
-        <div className={styles.navigator}>
-          <Button>
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </Button>
-          <Button>
-            <FontAwesomeIcon icon={faChevronRight} />
-          </Button>
-        </div>
-      </div>
-      <ul className={styles.listGrid}>
-        {movies.map((movie) => (
-          <li key={movie.id} className={styles.movieItem}>
-            <MovieCard {...movie} />
-          </li>
-        ))}
-      </ul>
+      <GenreFilter
+        currentId={genreId}
+        onChangeGenreId={setGenreId}
+        genres={genres}
+      />
+      <FilteredMovieList movies={movies} />
     </section>
   );
 }
