@@ -21,4 +21,10 @@
     color: $background-color;
     background-color: $text-color;
   }
+
+  &:disabled {
+    cursor: auto;
+    opacity: 0.6;
+    color: $subtext-color;
+  }
 }

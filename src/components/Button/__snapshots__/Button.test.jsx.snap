@@ -3,7 +3,12 @@
 exports[`Button component > should render to match snapshot 1`] = `
 <div>
   <button
-    class="_button_ee73f7  "
+    class="
+        _button_ee73f7 
+         
+         
+        
+      "
   >
     Click Me
   </button>

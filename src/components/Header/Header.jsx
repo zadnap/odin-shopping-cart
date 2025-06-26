@@ -10,7 +10,7 @@ function Header() {
     <header className={styles.header}>
       <Logo />
       <Input placeholder="Movies, series, shows..." />
-      <Button>
+      <Button aria-label="View Shopping Cart">
         <FontAwesomeIcon icon={faCartShopping} />
       </Button>
     </header>
