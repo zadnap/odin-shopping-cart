@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorMessage component > should render to match snapshot 1`] = `
+<div>
+  <div
+    class="_errorMessage_2e14f5"
+    role="alert"
+  >
+    <img
+      alt=""
+      class="_errorImage_2e14f5"
+      src="/src/assets/error-illustration.png"
+    />
+    <p
+      class="_message_2e14f5"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,16 @@
+@use '@/styles/variables.scss' as *;
+
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+  background-color: $subbackground-color;
+  border-radius: $border-radius;
+
+  .errorImage {
+    width: 70px;
+  }
+}
