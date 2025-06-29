@@ -1,0 +1,56 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/keyframes.scss' as *;
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+  background-color: $subbackground-color;
+  border-radius: $border-radius;
+
+  .loadingCircle {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    animation: pulse 1s ease-out infinite;
+
+    .icon {
+      background-color: #313a3d;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      border: 1px solid $text-color;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(
+        $text-color 0deg 60deg,
+        transparent 60deg 360deg
+      );
+      animation: rotate 1s ease-out infinite;
+      z-index: -1;
+    }
+  }
+
+  .message {
+    font-weight: 400;
+    font-size: 1.8rem;
+  }
+}
