@@ -1,4 +1,9 @@
 @use '@/styles/variables.scss' as *;
+@use '@/styles/keyframes.scss' as *;
+
+.showcaseContainer {
+  height: 400px;
+}
 
 .showcase {
   display: flex;
@@ -6,9 +11,10 @@
   justify-content: space-between;
   padding: $gap;
   border-radius: $border-radius;
-  height: 400px;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100%;
+  animation: fadeIn 0.2s ease;
 
   .tagList {
     display: flex;
