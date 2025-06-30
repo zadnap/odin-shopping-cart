@@ -1,19 +1,17 @@
 import styles from './TrailerPreview.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
 
-function TrailerPreview({ id, title, duration, rating, backdropSrc }) {
+function TrailerPreview({ title, year, rating, backdropSrc }) {
   return (
-    <Link
-      to={`/trailers/${id}`}
+    <button
       className={styles.trailerPreview}
       style={{ backgroundImage: `url(${backdropSrc})` }}
     >
       <h3 className={styles.title}>{title}</h3>
       <div className={styles.info}>
-        <p className={styles.duration} aria-label="Duration">
-          {duration}
+        <p className={styles.year} aria-label="Year">
+          {year}
         </p>
         <p className={styles.rating} aria-label="Rating">
           <FontAwesomeIcon icon={faStar} data-testid="star-icon" /> {rating}
@@ -26,7 +24,7 @@ function TrailerPreview({ id, title, duration, rating, backdropSrc }) {
           data-testid="play-icon"
         />
       </div>
-    </Link>
+    </button>
   );
 }
 

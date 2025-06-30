@@ -8,8 +8,13 @@ import {
 import NavItem from '../NavItem/NavItem';
 import styles from './Navigation.module.scss';
 import TrailerPreview from '../TrailerPreview/TrailerPreview';
+import { useEffect, useState } from 'react';
+
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 function Navigation() {
+  const [trailerPreviews, setTrailerPreviews] = useState([]);
+
   const topItems = [
     {
       to: '/',
@@ -33,6 +38,43 @@ function Navigation() {
     },
   ];
 
+  useEffect(() => {
+    async function getPopularMovieTrailers(numberOfTrailers) {
+      const popularRes = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+      );
+      const popularData = await popularRes.json();
+
+      const trailers = [];
+
+      for (let movie of popularData.results.slice(0, numberOfTrailers)) {
+        const videoRes = await fetch(
+          `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`
+        );
+        const videoData = await videoRes.json();
+
+        const trailer = videoData.results.find(
+          (v) => v.type === 'Trailer' && v.site === 'YouTube'
+        );
+
+        if (trailer) {
+          trailers.push({
+            id: movie.id,
+            title: movie.title,
+            year: movie.release_date.slice(0, 4),
+            rating: movie.vote_average.toFixed(1),
+            backdropSrc: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+            trailerUrl: `https://www.youtube.com/watch?v=${trailer.key}`,
+          });
+        }
+      }
+
+      setTrailerPreviews(trailers);
+    }
+
+    getPopularMovieTrailers(5);
+  }, []);
+
   return (
     <nav className={styles.navigation}>
       <div className={styles.itemSet}>
@@ -48,24 +90,18 @@ function Navigation() {
         <NavItem icon={faFilm} to="/trailers">
           Watching Trailers
         </NavItem>
-        <TrailerPreview
-          title="League of Legends: Arcane"
-          duration="3:30"
-          backdropSrc="https://image.tmdb.org/t/p/original/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg"
-          rating={8.6}
-        />
-        <TrailerPreview
-          title="Cyberpunk: Edgerunner"
-          duration="4:19"
-          backdropSrc="https://image.tmdb.org/t/p/original/gLlemMoIN4vbKvZvOWInWGxeQNL.jpg"
-          rating={9.1}
-        />
-        <TrailerPreview
-          title="Avatar: The Way of Water"
-          duration="3:20"
-          backdropSrc="https://image.tmdb.org/t/p/original/8rpDcsfLJypbO6vREc0547VKqEv.jpg"
-          rating={7.9}
-        />
+        <ul className={styles.trailerList}>
+          {trailerPreviews.map((preview) => (
+            <li className={styles.trailerItem} key={preview.id}>
+              <TrailerPreview
+                title={preview.title}
+                year={preview.year}
+                backdropSrc={preview.backdropSrc}
+                rating={preview.rating}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );

@@ -6,13 +6,15 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  outline: none;
+  border: none;
   padding: 10px;
   border-radius: $border-radius;
-  margin: 10px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 140px;
+  width: 100%;
   color: $text-color;
 
   .title {
