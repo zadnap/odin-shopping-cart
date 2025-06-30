@@ -4,4 +4,15 @@
   color: $text-color;
   background-color: $background-color;
   min-height: 100vh;
+
+  .body {
+    padding: 0 $gap $gap $gap;
+
+    .outlet {
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      margin-left: calc($navigation-width + $gap);
+    }
+  }
 }
