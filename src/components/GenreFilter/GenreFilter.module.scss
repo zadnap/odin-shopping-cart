@@ -1,4 +1,7 @@
+@use '@/styles/keyframes.scss' as *;
+
 .genreFilter {
+  animation: fadeIn 0.2s ease;
   position: relative;
   display: flex;
   gap: 10px;

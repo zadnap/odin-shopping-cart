@@ -1,6 +1,8 @@
 @use '@/styles/variables.scss' as *;
+@use '@/styles/keyframes.scss' as *;
 
 .filteredMovieList {
+  animation: fadeIn 0.2s ease;
   display: grid;
   gap: $gap;
   padding: 0;

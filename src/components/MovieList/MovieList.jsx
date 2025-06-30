@@ -2,13 +2,16 @@ import styles from './MovieList.module.scss';
 import { useEffect, useState } from 'react';
 import FilteredMovieList from '@/components/FilteredMovieList/FilteredMovieList';
 import GenreFilter from '@/components/GenreFilter/GenreFilter';
+import Loader from '@/components/Loader/Loader';
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 function MovieList() {
   const [genreId, setGenreId] = useState(28);
-  const [genres, setGenres] = useState([]);
-  const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState(null);
+  const [movies, setMovies] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -18,13 +21,18 @@ function MovieList() {
         );
 
         if (!response.ok)
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(
+            (response.status === 404
+              ? 'Could not find a list of genre. '
+              : 'Something went wrong while fetching genre data. ') +
+              'Please try again later.'
+          );
 
         const data = await response.json();
 
         setGenres(data.genres);
       } catch (error) {
-        console.error('Failed to fetch genres:', error);
+        setErrorMessage(error.message);
       }
     };
 
@@ -33,13 +41,20 @@ function MovieList() {
 
   useEffect(() => {
     const fetchMovies = async () => {
+      setMovies(null);
+
       try {
         const response = await fetch(
           `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
         );
 
         if (!response.ok)
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(
+            (response.status === 404
+              ? 'Could not find movies of this genre. '
+              : 'Something went wrong while fetching movie data. ') +
+              'Please try again later.'
+          );
 
         const data = await response.json();
 
@@ -55,7 +70,7 @@ function MovieList() {
 
         setMovies(mappedMovies);
       } catch (error) {
-        console.error('Failed to fetch movies:', error);
+        setErrorMessage(error.message);
       }
     };
 
@@ -64,12 +79,20 @@ function MovieList() {
 
   return (
     <section className={styles.movieList}>
-      <GenreFilter
-        currentId={genreId}
-        onChangeGenreId={setGenreId}
-        genres={genres}
-      />
-      <FilteredMovieList movies={movies} />
+      {errorMessage ? (
+        <ErrorMessage message={errorMessage} />
+      ) : (
+        <>
+          {genres && (
+            <GenreFilter
+              currentId={genreId}
+              onChangeGenreId={setGenreId}
+              genres={genres}
+            />
+          )}
+          {movies ? <FilteredMovieList movies={movies} /> : <Loader />}
+        </>
+      )}
     </section>
   );
 }
