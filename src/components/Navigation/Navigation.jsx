@@ -94,6 +94,7 @@ function Navigation() {
           {trailerPreviews.map((preview) => (
             <li className={styles.trailerItem} key={preview.id}>
               <TrailerPreview
+                id={preview.id}
                 title={preview.title}
                 year={preview.year}
                 backdropSrc={preview.backdropSrc}

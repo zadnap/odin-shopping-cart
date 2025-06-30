@@ -2,8 +2,10 @@
 
 exports[`TrailerPreview component > should render to match snapshot 1`] = `
 <div>
-  <button
+  <a
     class="_trailerPreview_7373d7"
+    data-discover="true"
+    href="/movies/1"
     style="background-image: url("https://image.tmdb.org/t/p/original/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg");"
   >
     <h3
@@ -62,6 +64,6 @@ exports[`TrailerPreview component > should render to match snapshot 1`] = `
         />
       </svg>
     </div>
-  </button>
+  </a>
 </div>
 `;
