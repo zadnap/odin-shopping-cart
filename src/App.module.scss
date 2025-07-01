@@ -6,13 +6,14 @@
   min-height: 100vh;
 
   .body {
-    padding: 0 $gap $gap $gap;
+    display: flex;
+    gap: $gap;
+    padding: 0 $gap;
 
     .outlet {
       display: flex;
       flex-direction: column;
       gap: $gap;
-      margin-left: calc($navigation-width + $gap);
     }
   }
 }

@@ -5,11 +5,11 @@
   flex-direction: column;
   gap: $gap;
   overflow-y: auto;
-  top: 68.5px;
-  bottom: $gap;
-  position: fixed;
+  position: sticky;
+  top: $header-height;
   background-color: $background-color;
   width: $navigation-width;
+  max-height: calc(100vh - $header-height);
   scrollbar-width: none;
   -ms-overflow-style: none;
 
