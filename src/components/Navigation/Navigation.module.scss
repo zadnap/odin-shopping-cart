@@ -9,6 +9,7 @@
   top: $header-height;
   background-color: $background-color;
   width: $navigation-width;
+  flex-shrink: 0;
   max-height: calc(100vh - $header-height);
   scrollbar-width: none;
   -ms-overflow-style: none;
