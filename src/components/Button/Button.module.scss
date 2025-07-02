@@ -1,6 +1,9 @@
 @use '@/styles/variables.scss' as *;
 
 .button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: $text-color;
   background-color: $subbackground-color;
   border: none;
