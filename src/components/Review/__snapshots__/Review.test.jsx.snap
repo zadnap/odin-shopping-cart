@@ -1,0 +1,130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Review component > should render to match snapshot 1`] = `
+<div>
+  <section
+    class="_review_031c44"
+  >
+    <div
+      class="_header_031c44"
+    >
+      <h1
+        class="_title_031c44"
+      >
+        Reviews
+      </h1>
+      <div
+        class="_navigator_031c44"
+      >
+        <button
+          aria-label="View Previous Review Article"
+          class="
+        _button_ee73f7 
+         
+        _square_ee73f7
+        
+      "
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-chevron-left "
+            data-icon="chevron-left"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+        <button
+          aria-label="View Next Review Article"
+          class="
+        _button_ee73f7 
+         
+        _square_ee73f7
+        
+      "
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-chevron-right "
+            data-icon="chevron-right"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <article
+      class="_reviewArticle_031c44"
+    >
+      <div
+        class="_info_031c44"
+      >
+        <img
+          alt="Chris Sawin's profile image"
+          class="_profileImage_031c44"
+          src="https://secure.gravatar.com/avatar/bf3b87ecb40599290d764e6d73c86319.jpg?s=45"
+        />
+        <div
+          class="_authorInfo_031c44"
+        >
+          <h2
+            class="_name_031c44"
+          >
+            A review by 
+            Chris Sawin
+          </h2>
+          <p
+            class="_releaseDate_031c44"
+          >
+            June 1, 2025
+          </p>
+        </div>
+        <div
+          class="_rating_031c44"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-star "
+            data-icon="star"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 576 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+              fill="currentColor"
+            />
+          </svg>
+           
+          <span>
+            60
+            %
+          </span>
+        </div>
+      </div>
+      <p
+        class="_detail_031c44"
+      >
+        While watching Disney
+      </p>
+    </article>
+  </section>
+</div>
+`;

@@ -1,0 +1,56 @@
+@use '@/styles/variables.scss' as *;
+
+.review {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 10px;
+
+    .title {
+      font-size: 1.8rem;
+    }
+    .navigator {
+      display: flex;
+      gap: 6px;
+    }
+  }
+  .reviewArticle {
+    padding: 15px;
+    background-color: $subbackground-color;
+    border-radius: $border-radius;
+    margin-bottom: 10px;
+
+    .info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+
+      .profileImage {
+        width: 50px;
+        height: 50px;
+        border-radius: $border-radius;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+      .authorInfo {
+        .name {
+          font-size: 1.6rem;
+          font-weight: 600;
+        }
+        .releaseDate {
+          font-size: 1.3rem;
+        }
+      }
+      .rating {
+        font-size: 1.4rem;
+        padding: 4px 7px;
+        align-self: self-start;
+        border-radius: $border-radius;
+        background-color: $overlay-color;
+        color: yellow;
+        margin-left: auto;
+      }
+    }
+  }
+}
