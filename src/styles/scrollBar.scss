@@ -1,0 +1,16 @@
+@use './variables.scss' as *;
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $subtext-color;
+  border-radius: 10px;
+}
