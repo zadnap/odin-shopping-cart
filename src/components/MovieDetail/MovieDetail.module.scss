@@ -1,0 +1,106 @@
+@use '@/styles/variables.scss' as *;
+
+.movieDetail {
+  position: relative;
+  border-radius: $border-radius;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  height: calc(100vh - $header-height);
+
+  &::before {
+    border-radius: $border-radius;
+    position: absolute;
+    content: '';
+    background-color: $overlay-color;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  .poster {
+    border-radius: $border-radius;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .generalInfo {
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        .title {
+          font-size: 2.5rem;
+        }
+        .rating {
+          font-size: 1.5rem;
+          padding: 4px 10px;
+          color: yellow;
+          border-radius: $border-radius;
+          background-color: $overlay-color;
+        }
+      }
+
+      .movieMeta {
+        font-size: 1.5rem;
+        font-weight: 300;
+
+        .certification {
+          padding: 1px 5px;
+          border: 1px solid $subtext-color;
+        }
+      }
+    }
+
+    .detailList {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .item {
+        .title {
+          font-size: 1.6rem;
+          font-weight: 500;
+        }
+        .description {
+          font-size: 1.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+
+          .tag {
+            padding: 3px 8px;
+            border-radius: $border-radius;
+            background-color: $overlay-color;
+          }
+        }
+      }
+    }
+
+    .buttonGroup {
+      display: flex;
+      justify-content: end;
+      gap: 8px;
+      margin-top: auto;
+    }
+  }
+}
