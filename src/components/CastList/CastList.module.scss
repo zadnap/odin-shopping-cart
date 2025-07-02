@@ -1,0 +1,57 @@
+@use '@/styles/variables.scss' as *;
+
+.castListContainer {
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .scroller {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(to left, #1a1a1a, transparent);
+    }
+
+    .castList {
+      display: flex;
+      gap: $gap;
+      overflow-y: auto;
+      padding-bottom: 10px;
+
+      .item {
+        background-color: $subbackground-color;
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+        width: 150px;
+        flex: 0 0 auto;
+
+        .profilePicture {
+          border-top-left-radius: $border-radius;
+          border-top-right-radius: $border-radius;
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        .info {
+          padding: 10px;
+          .actor {
+            font-size: 1.4rem;
+          }
+          .character {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}

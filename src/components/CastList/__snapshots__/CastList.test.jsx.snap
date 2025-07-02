@@ -1,0 +1,92 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CastList component > should render to match snapshot 1`] = `
+<div>
+  <section
+    class="_castListContainer_54003b"
+  >
+    <h1
+      class="_title_54003b"
+    >
+      The Cast
+    </h1>
+    <div
+      class="_scroller_54003b"
+    >
+      <ul
+        class="_castList_54003b"
+      >
+        <li
+          class="_item_54003b"
+        >
+          <img
+            alt="Maia Kealoha's profile picture"
+            class="_profilePicture_54003b"
+            src="https://media.themoviedb.org/t/p/w138_and_h175_face/jqsKbBF28V2Oq5tKPR5USkNufwC.jpg"
+          />
+          <div
+            class="_info_54003b"
+          >
+            <h2
+              class="_actor_54003b"
+            >
+              Maia Kealoha
+            </h2>
+            <p
+              class="_character_54003b"
+            >
+              Lilo
+            </p>
+          </div>
+        </li>
+        <li
+          class="_item_54003b"
+        >
+          <img
+            alt="Sydney Agudong's profile picture"
+            class="_profilePicture_54003b"
+            src="https://media.themoviedb.org/t/p/w138_and_h175_face/3K5hJ3meeClHWsPKetqd9qgyveJ.jpg"
+          />
+          <div
+            class="_info_54003b"
+          >
+            <h2
+              class="_actor_54003b"
+            >
+              Sydney Agudong
+            </h2>
+            <p
+              class="_character_54003b"
+            >
+              Nani
+            </p>
+          </div>
+        </li>
+        <li
+          class="_item_54003b"
+        >
+          <img
+            alt="Chris Sanders's profile picture"
+            class="_profilePicture_54003b"
+            src="https://media.themoviedb.org/t/p/w138_and_h175_face/6CtrIOCxggJ5eIAWeFQqd4Hs9FP.jpg"
+          />
+          <div
+            class="_info_54003b"
+          >
+            <h2
+              class="_actor_54003b"
+            >
+              Chris Sanders
+            </h2>
+            <p
+              class="_character_54003b"
+            >
+              Stitch (voice)
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+`;
