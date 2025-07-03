@@ -1,0 +1,73 @@
+@use '@/styles/variables.scss' as *;
+
+.productItem {
+  display: flex;
+  border-bottom: 1px solid $subbackground-color;
+  padding: 15px 0;
+
+  .backdrop {
+    width: 10%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: $border-radius;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: $gap;
+    padding-left: 15px;
+    overflow-y: auto;
+
+    .title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: $text-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .movieMeta {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 1.4rem;
+      color: $subtext-color;
+
+      .tag {
+        font-size: 1.1rem;
+        color: $text-color;
+        border: 1px solid $subtext-color;
+        border-radius: $border-radius;
+        padding: 0 10px;
+      }
+
+      .year {
+        color: $text-color;
+      }
+
+      .rating {
+        color: yellow;
+      }
+    }
+
+    .rent {
+      .price {
+        font-size: 1.5rem;
+        background-color: green;
+        padding: 1px 10px;
+        border-radius: $border-radius;
+      }
+    }
+
+    .buttonGroup {
+      margin-left: auto;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+}
