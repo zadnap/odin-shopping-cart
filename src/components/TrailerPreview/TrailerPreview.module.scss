@@ -7,11 +7,14 @@
   background-repeat: no-repeat;
   background-position: center;
   padding: 10px;
+  outline: none;
+  border: none;
   border-radius: $border-radius;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 140px;
+  width: 100%;
   color: $text-color;
 
   .title {
