@@ -1,0 +1,54 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/keyframes.scss' as *;
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $overlay-color;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn ease 0.1s;
+
+  .modalContainer {
+    position: absolute;
+    width: 70%;
+    margin: 15px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background-color: $background-color;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+
+      .title {
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: $text-color;
+      }
+
+      .closeModal {
+        cursor: pointer;
+        background-color: transparent;
+        color: $text-color;
+        outline: none;
+        border: none;
+      }
+    }
+
+    .body {
+      flex: 1;
+      position: relative;
+    }
+  }
+}
