@@ -9,7 +9,7 @@
     display: flex;
     max-width: 100vw;
     gap: $gap;
-    padding: 0 $gap;
+    padding: 0 $gap $gap $gap;
 
     .outlet {
       flex: 1;
