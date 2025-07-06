@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import NavItem from '../NavItem/NavItem';
 import styles from './Navigation.module.scss';
-import TrailerPreview from '../TrailerPreview/TrailerPreview';
+import TrailerPreview from '@/components/TrailerPreview/TrailerPreview';
 import { useEffect, useState } from 'react';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -65,6 +65,7 @@ function Navigation() {
             rating: movie.vote_average.toFixed(1),
             backdropSrc: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
             trailerUrl: `https://www.youtube.com/watch?v=${trailer.key}`,
+            trailerKey: trailer.key,
           });
         }
       }
@@ -94,7 +95,7 @@ function Navigation() {
           {trailerPreviews.map((preview) => (
             <li className={styles.trailerItem} key={preview.id}>
               <TrailerPreview
-                id={preview.id}
+                trailerKey={preview.trailerKey}
                 title={preview.title}
                 year={preview.year}
                 backdropSrc={preview.backdropSrc}
