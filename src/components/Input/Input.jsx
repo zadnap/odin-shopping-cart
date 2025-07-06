@@ -5,9 +5,11 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 function Input({
   icon = faSearch,
   type = 'text',
+  name,
   value,
   placeholder,
   onChange,
+  ...props
 }) {
   return (
     <div className={styles.inputContainer}>
@@ -16,8 +18,10 @@ function Input({
         type={type}
         className={styles.input}
         value={value}
+        name={name}
         placeholder={placeholder}
         onChange={onChange}
+        {...props}
       />
     </div>
   );
