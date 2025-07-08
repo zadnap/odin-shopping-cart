@@ -3,13 +3,39 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: $gap $gap $gap calc($gap + 10px);
   position: sticky;
   top: 0;
   z-index: 2;
   background-color: $background-color;
 
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: $text-color;
+
+    .logoImage {
+      width: 30px;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+  }
+
   .searchBar {
     width: 40%;
+  }
+
+  .cartLink {
+    background-color: $subbackground-color;
+    color: $text-color;
+    padding: 6px 10px;
+    border-radius: $border-radius;
   }
 }

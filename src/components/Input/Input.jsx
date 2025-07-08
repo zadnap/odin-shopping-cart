@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Input({
+  id,
   icon = faSearch,
   type = 'text',
   name,
@@ -15,6 +16,7 @@ function Input({
     <div className={styles.inputContainer}>
       <FontAwesomeIcon icon={icon} className={styles.icon} />
       <input
+        id={id}
         type={type}
         className={styles.input}
         value={value}
