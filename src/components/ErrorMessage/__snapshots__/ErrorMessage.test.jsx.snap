@@ -9,7 +9,7 @@ exports[`ErrorMessage component > should render to match snapshot 1`] = `
     <img
       alt=""
       class="_errorImage_2e14f5"
-      src="/src/assets/error-illustration.png"
+      src="/src/assets/error-face.png"
     />
     <p
       class="_message_2e14f5"
