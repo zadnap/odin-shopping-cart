@@ -5,7 +5,7 @@ exports[`MovieCard component > should render to match snapshot 1`] = `
   <a
     class="_movieCard_a48f4b"
     data-discover="true"
-    href="/movies/238"
+    href="/movie/238"
   >
     <img
       alt="Flow's poster"

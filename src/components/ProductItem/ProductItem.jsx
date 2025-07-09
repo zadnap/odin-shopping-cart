@@ -22,7 +22,7 @@ function ProductItem({
       />
       <div className={styles.info}>
         <div className={styles.header}>
-          <Link to={`/movies/${id}`} className={styles.title} role="heading">
+          <Link to={`/movie/${id}`} className={styles.title} role="heading">
             {title}
           </Link>
           <div className={styles.movieMeta}>

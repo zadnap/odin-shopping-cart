@@ -18,7 +18,7 @@ exports[`ProductItem component > should render to match snapshot 1`] = `
         <a
           class="_title_b7926d"
           data-discover="true"
-          href="/movies/1"
+          href="/movie/1"
           role="heading"
         >
           Lilo & Stitch

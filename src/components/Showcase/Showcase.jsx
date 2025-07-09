@@ -78,7 +78,7 @@ function Showcase() {
             <h1 className={styles.title}>{movie.title}</h1>
             <p className={styles.desc}>
               <span className={styles.clampText}>{movie.desc}</span>{' '}
-              <Link className={styles.seeMore} to={`/movies/${movie.id}`}>
+              <Link className={styles.seeMore} to={`/movie/${movie.id}`}>
                 See more
               </Link>
             </p>
