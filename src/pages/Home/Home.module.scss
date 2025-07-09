@@ -1,0 +1,7 @@
+@use '@/styles/variables.scss' as *;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
