@@ -1,18 +1,18 @@
 import styles from './App.module.scss';
-import { MemoryRouter } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Header from '@/components/Header/Header';
 import Navigation from '@/components/Navigation/Navigation';
 
 function App() {
   return (
     <div className={styles.app}>
-      <MemoryRouter>
-        <Header />
-        <div className={styles.body}>
-          <Navigation />
-          <div className={styles.outlet}></div>
-        </div>
-      </MemoryRouter>
+      <Header />
+      <div className={styles.body}>
+        <Navigation />
+        <main className={styles.outletContainer}>
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
