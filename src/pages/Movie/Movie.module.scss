@@ -1,0 +1,7 @@
+@use '@/styles/variables.scss' as *;
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
