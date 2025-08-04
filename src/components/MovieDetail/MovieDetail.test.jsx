@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import MovieDetail from './MovieDetail';
 
-const mockProps = {
+const mockMovie = {
   title: 'Lilo & Stitch',
   posterSrc:
     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7c5VBuCbjZOk7lSfj9sMpmDIaKX.jpg',
@@ -21,7 +21,12 @@ const mockProps = {
     { id: 5, name: 'Adventure' },
   ],
   rating: 7.1,
-  language: 'English',
+  languages: [
+    {
+      id: 1,
+      name: 'English',
+    },
+  ],
   directors: ['Dean Fleischer Camp'],
   writers: ['Chris Kekaniokalani Bright', 'Mike Van Waes'],
   rent: '$4.99',
@@ -29,7 +34,7 @@ const mockProps = {
 
 describe('MovieDetail component', () => {
   it('should render to match snapshot', () => {
-    const { container } = render(<MovieDetail {...mockProps} />);
+    const { container } = render(<MovieDetail movie={mockMovie} />);
 
     expect(container).toMatchSnapshot();
   });
