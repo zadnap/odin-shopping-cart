@@ -7,11 +7,16 @@
   align-items: center;
   gap: 15px;
   height: 100%;
-  padding: 30px;
+  padding: 100px;
   background-color: $subbackground-color;
   border-radius: $border-radius;
 
   .errorImage {
     width: 70px;
+  }
+
+  .message {
+    text-align: center;
+    color: $text-color;
   }
 }
