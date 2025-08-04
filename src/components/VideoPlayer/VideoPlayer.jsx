@@ -1,4 +1,5 @@
 import styles from './VideoPlayer.module.scss';
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 
 function VideoPlayer({ videoKey, movieTitle }) {
   return videoKey ? (
@@ -12,7 +13,7 @@ function VideoPlayer({ videoKey, movieTitle }) {
       loading="lazy"
     />
   ) : (
-    <p>Trailer unavailable</p>
+    <ErrorMessage message="Trailer Unavailable" />
   );
 }
 
