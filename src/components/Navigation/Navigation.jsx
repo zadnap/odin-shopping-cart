@@ -22,7 +22,7 @@ function Navigation() {
       title: 'Home',
     },
     {
-      to: '/favourtites',
+      to: '/favourites',
       icon: faHeart,
       title: 'Favourites',
     },
