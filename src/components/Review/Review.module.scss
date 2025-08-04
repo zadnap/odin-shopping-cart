@@ -52,5 +52,15 @@
         margin-left: auto;
       }
     }
+
+    .detail {
+      white-space: pre-line;
+
+      a {
+        color: $text-color;
+        font-weight: 500;
+        text-decoration: underline;
+      }
+    }
   }
 }

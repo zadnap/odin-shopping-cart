@@ -6,38 +6,59 @@ import {
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '@/components/Button/Button';
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 
-function Review({ profileImageSrc, name, releaseDate, rating, detail }) {
+function Review({ numberOfReview, currentReview, onNext, onPrev }) {
   return (
     <section className={styles.review}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Reviews</h1>
-        <div className={styles.navigator}>
-          <Button square aria-label="View Previous Review Article">
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </Button>
-          <Button square aria-label="View Next Review Article">
-            <FontAwesomeIcon icon={faChevronRight} />
-          </Button>
-        </div>
+        <h1 className={styles.title}>Reviews ({numberOfReview})</h1>
+        {numberOfReview > 0 && (
+          <div className={styles.navigator}>
+            <Button
+              square
+              aria-label="View Previous Review Article"
+              onClick={onPrev}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </Button>
+            <Button
+              square
+              aria-label="View Next Review Article"
+              onClick={onNext}
+            >
+              <FontAwesomeIcon icon={faChevronRight} />
+            </Button>
+          </div>
+        )}
       </div>
-      <article className={styles.reviewArticle}>
-        <div className={styles.info}>
-          <img
-            className={styles.profileImage}
-            src={profileImageSrc}
-            alt={`${name}'s profile image`}
+      {numberOfReview > 0 ? (
+        <article className={styles.reviewArticle}>
+          <div className={styles.info}>
+            <img
+              className={styles.profileImage}
+              src={currentReview.profileImage}
+              alt={`${currentReview.author}'s profile image`}
+            />
+            <div className={styles.authorInfo}>
+              <h2 className={styles.name}>
+                A review by {currentReview.author}
+              </h2>
+              <p className={styles.releaseDate}>{currentReview.releaseDate}</p>
+            </div>
+            <div className={styles.rating}>
+              <FontAwesomeIcon icon={faStar} />{' '}
+              <span>{currentReview.rating}%</span>
+            </div>
+          </div>
+          <p
+            className={styles.detail}
+            dangerouslySetInnerHTML={{ __html: currentReview.detail }}
           />
-          <div className={styles.authorInfo}>
-            <h2 className={styles.name}>A review by {name}</h2>
-            <p className={styles.releaseDate}>{releaseDate}</p>
-          </div>
-          <div className={styles.rating}>
-            <FontAwesomeIcon icon={faStar} /> <span>{rating}%</span>
-          </div>
-        </div>
-        <p className={styles.detail}>{detail}</p>
-      </article>
+        </article>
+      ) : (
+        <ErrorMessage message="This movie has not received any reviews yet" />
+      )}
     </section>
   );
 }
