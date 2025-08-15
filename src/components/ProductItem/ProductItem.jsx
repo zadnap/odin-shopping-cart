@@ -12,7 +12,18 @@ function ProductItem({
   certification,
   backdropSrc,
   rent,
+  rents,
+  setRents,
 }) {
+  const handleCancelRenting = () => {
+    const updatedRents = rents.filter((rentItem) => rentItem.id !== id);
+    setRents(updatedRents);
+
+    const storedIds = JSON.parse(localStorage.getItem('rents')) || [];
+    const updatedIds = storedIds.filter((storedId) => storedId !== id);
+    localStorage.setItem('rents', JSON.stringify(updatedIds));
+  };
+
   return (
     <article className={styles.productItem}>
       <img
@@ -34,7 +45,7 @@ function ProductItem({
           </div>
         </div>
         <div className={styles.buttonGroup}>
-          <Button square>
+          <Button square onClick={handleCancelRenting}>
             <FontAwesomeIcon icon={faTrash} />
           </Button>
         </div>

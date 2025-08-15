@@ -25,7 +25,7 @@ function CheckoutForm({ summary, paymentMethods }) {
                 <div key={item.title} className={styles.pair}>
                   <dt>{item.title}</dt>
                   <dd>
-                    {!item.isPositive && '-'}${item.value}
+                    {!item.isPositive && '-'}${item.value.toFixed(2)}
                   </dd>
                 </div>
               )
@@ -34,11 +34,13 @@ function CheckoutForm({ summary, paymentMethods }) {
             <dt>Total</dt>
             <dd>
               $
-              {summary.reduce(
-                (acc, curr) =>
-                  curr.isPositive ? acc + curr.value : acc - curr.value,
-                0
-              )}
+              {summary
+                .reduce(
+                  (acc, curr) =>
+                    curr.isPositive ? acc + curr.value : acc - curr.value,
+                  0
+                )
+                .toFixed(2)}
             </dd>
           </div>
         </dl>
