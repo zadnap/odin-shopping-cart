@@ -9,10 +9,11 @@ import {
   faCartPlus,
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function MovieDetail({ movie }) {
   const {
+    id,
     title,
     posterSrc,
     backdropSrc,
@@ -29,6 +30,36 @@ function MovieDetail({ movie }) {
     rent,
   } = movie;
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [rents, setRents] = useState(
+    JSON.parse(localStorage.getItem('rents')) || []
+  );
+  const [favourites, setFavourites] = useState(
+    JSON.parse(localStorage.getItem('favourites')) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem('rents', JSON.stringify(rents));
+  }, [rents]);
+
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+  }, [favourites]);
+
+  const handleRent = () => {
+    if (!rents.includes(id)) {
+      setRents([...rents, id]);
+    } else {
+      setRents(rents.filter((rent) => rent !== id));
+    }
+  };
+
+  const handleFavourite = () => {
+    if (!favourites.includes(id)) {
+      setFavourites([...favourites, id]);
+    } else {
+      setFavourites(favourites.filter((fav) => fav !== id));
+    }
+  };
 
   return (
     <article
@@ -106,11 +137,13 @@ function MovieDetail({ movie }) {
           </li>
         </ul>
         <div className={styles.buttonGroup}>
-          <Button>
-            <FontAwesomeIcon icon={faCartPlus} /> Rent: ${rent}
+          <Button onClick={handleRent}>
+            <FontAwesomeIcon icon={faCartPlus} />{' '}
+            {rents.find((rent) => rent === id) ? 'Cancel' : 'Rent'}: ${rent}
           </Button>
-          <Button>
-            <FontAwesomeIcon icon={faHeart} /> Add to Favourites
+          <Button onClick={handleFavourite}>
+            <FontAwesomeIcon icon={faHeart} />{' '}
+            {favourites.find((fav) => fav === id) ? 'Unfavorite' : 'Favourite'}
           </Button>
           <Button onClick={() => setIsOpenModal(true)}>
             <FontAwesomeIcon icon={faPlay} /> Play trailer

@@ -89,6 +89,7 @@ function Movie() {
         );
 
         const movieResult = {
+          id: movieData.id,
           title: movieData.title,
           posterSrc: `https://image.tmdb.org/t/p/original${movieData.poster_path}`,
           backdropSrc: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`,
