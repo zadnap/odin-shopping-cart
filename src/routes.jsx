@@ -6,6 +6,7 @@ import Trending from './pages/Trending/Trending';
 import Upcoming from './pages/Upcoming/Upcoming';
 import Trailers from './pages/Trailers/Trailers';
 import Favourites from './pages/Favourites/Favourites';
+import Search from './pages/Search/Search';
 
 const routes = [
   {
@@ -19,6 +20,7 @@ const routes = [
       { path: '/upcoming', element: <Upcoming /> },
       { path: '/trending', element: <Trending /> },
       { path: '/favourites', element: <Favourites /> },
+      { path: '/search', element: <Search /> },
     ],
   },
 ];
