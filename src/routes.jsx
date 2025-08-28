@@ -7,11 +7,13 @@ import Upcoming from './pages/Upcoming/Upcoming';
 import Trailers from './pages/Trailers/Trailers';
 import Favourites from './pages/Favourites/Favourites';
 import Search from './pages/Search/Search';
+import Error from './pages/Error/Error';
 
 const routes = [
   {
     path: '/',
     element: <App />,
+    errorElement: <Error />,
     children: [
       { path: '/', element: <Home /> },
       { path: '/cart', element: <Cart /> },

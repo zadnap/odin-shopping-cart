@@ -1,0 +1,36 @@
+@use '@/styles/variables.scss' as *;
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+  padding: 10px;
+  height: 100vh;
+  .illustration {
+    max-width: 30%;
+    border-radius: $border-radius;
+  }
+
+  .content {
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+    .desc {
+      margin-bottom: 10px;
+    }
+    .link {
+      color: yellowgreen;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
