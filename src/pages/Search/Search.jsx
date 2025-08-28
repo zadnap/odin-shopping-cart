@@ -43,7 +43,7 @@ function Search() {
             title: movie.title,
             year: movie.release_date ? movie.release_date.slice(0, 4) : 'N/A',
             rating: movie.vote_average?.toFixed(1) ?? 'N/A',
-            posterSrc: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
+            posterSrc: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
           };
         });
 

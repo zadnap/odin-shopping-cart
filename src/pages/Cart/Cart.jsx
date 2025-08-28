@@ -65,7 +65,7 @@ function Cart() {
                 ?.certification || 'NR';
 
             return {
-              backdropSrc: `https://image.tmdb.org/t/p/original${data.backdrop_path}`,
+              backdropSrc: `https://image.tmdb.org/t/p/w185${data.backdrop_path}`,
               title: data.title,
               year: data.release_date.slice(0, 4),
               rating: data.vote_average.toFixed(1),

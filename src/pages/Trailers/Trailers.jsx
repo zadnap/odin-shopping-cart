@@ -41,7 +41,7 @@ function Trailers() {
               year: movie.release_date?.slice(0, 4) ?? 'N/A',
               rating: movie.vote_average?.toFixed(1) ?? 'N/A',
               backdropSrc: movie.backdrop_path
-                ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+                ? `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`
                 : null,
             };
           })

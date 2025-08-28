@@ -91,7 +91,7 @@ function Movie() {
         const movieResult = {
           id: movieData.id,
           title: movieData.title,
-          posterSrc: `https://image.tmdb.org/t/p/original${movieData.poster_path}`,
+          posterSrc: `https://image.tmdb.org/t/p/w500${movieData.poster_path}`,
           backdropSrc: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`,
           certification,
           releaseDate: formatDate(movieData.release_date),
@@ -120,7 +120,7 @@ function Movie() {
           name: cast.name,
           character: cast.character,
           profilePicture: cast.profile_path
-            ? `https://image.tmdb.org/t/p/original${cast.profile_path}`
+            ? `https://image.tmdb.org/t/p/w185${cast.profile_path}`
             : fallbackActor,
         }));
 
@@ -130,7 +130,7 @@ function Movie() {
           detail: review.content,
           rating: review.author_details.rating * 10,
           profileImage: review.author_details.avatar_path
-            ? `https://image.tmdb.org/t/p/original${review.author_details.avatar_path}`
+            ? `https://image.tmdb.org/t/p/w92${review.author_details.avatar_path}`
             : fallbackAvatar,
           releaseDate: new Date(review.created_at).toLocaleDateString(),
         }));

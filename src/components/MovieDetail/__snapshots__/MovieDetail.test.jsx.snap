@@ -205,7 +205,9 @@ exports[`MovieDetail component > should render to match snapshot 1`] = `
               fill="currentColor"
             />
           </svg>
-           Rent: $
+           
+          Rent
+          : $
           $4.99
         </button>
         <button
@@ -231,7 +233,8 @@ exports[`MovieDetail component > should render to match snapshot 1`] = `
               fill="currentColor"
             />
           </svg>
-           Add to Favourites
+           
+          Favourite
         </button>
         <button
           class="

@@ -22,7 +22,7 @@ function Upcoming() {
       const data = await response.json();
       const movieResult = data.results.map((movie) => ({
         id: movie.id,
-        posterSrc: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
+        posterSrc: `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
         title: movie.title,
         year: movie.release_date.slice(0, 4),
         rating: movie.vote_average.toFixed(1),

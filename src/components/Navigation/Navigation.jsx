@@ -63,7 +63,7 @@ function Navigation() {
             title: movie.title,
             year: movie.release_date.slice(0, 4),
             rating: movie.vote_average.toFixed(1),
-            backdropSrc: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+            backdropSrc: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
             trailerUrl: `https://www.youtube.com/watch?v=${trailer.key}`,
             trailerKey: trailer.key,
           });

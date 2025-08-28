@@ -55,6 +55,7 @@ exports[`Header > should render to match snapshot 1`] = `
           id="header-search"
           placeholder="Movies, series, shows..."
           type="text"
+          value=""
         />
       </div>
     </form>
