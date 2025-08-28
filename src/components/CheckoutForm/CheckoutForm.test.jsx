@@ -49,7 +49,7 @@ describe('CheckoutForm component', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('should render a payment section', () => {
+  it('should render a summary section', () => {
     const heading = screen.getByRole('heading', { name: 'Order Summary' });
 
     expect(heading).toBeInTheDocument();
@@ -57,17 +57,17 @@ describe('CheckoutForm component', () => {
 
   it('renders only non-zero items with correct signs', () => {
     expect(screen.getByText('Fee A')).toBeInTheDocument();
-    expect(screen.getByText('$100')).toBeInTheDocument();
+    expect(screen.getByText('$100.00')).toBeInTheDocument();
 
     expect(screen.getByText('Fee B')).toBeInTheDocument();
-    expect(screen.getByText('-$50')).toBeInTheDocument();
+    expect(screen.getByText('-$50.00')).toBeInTheDocument();
 
     expect(screen.queryByText('Fee C')).not.toBeInTheDocument();
   });
 
   it('renders the correct total', () => {
     expect(screen.getByText('Total')).toBeInTheDocument();
-    expect(screen.getByText('$50')).toBeInTheDocument();
+    expect(screen.getByText('$50.00')).toBeInTheDocument();
   });
 
   it('should render a payment section', () => {
