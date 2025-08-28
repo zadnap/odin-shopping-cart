@@ -10,6 +10,8 @@ import {
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
+import fallbackPoster from '@/assets/fallback-poster.jpg';
+import fallbackBackdrop from '@/assets/fallback-backdrop.jpg';
 
 function MovieDetail({ movie }) {
   const {
@@ -65,12 +67,12 @@ function MovieDetail({ movie }) {
     <article
       className={styles.movieDetail}
       style={{
-        backgroundImage: `url(${backdropSrc})`,
+        backgroundImage: `url(${backdropSrc || fallbackBackdrop})`,
       }}
     >
       <img
         className={styles.poster}
-        src={posterSrc}
+        src={posterSrc || fallbackPoster}
         alt={`${title}'s poster`}
       />
       <div className={styles.info}>

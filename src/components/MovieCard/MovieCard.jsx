@@ -2,13 +2,14 @@ import styles from './MovieCard.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import fallbackPoster from '@/assets/fallback-poster.jpg';
 
 function MovieCard({ posterSrc, title, year, rating, id }) {
   return (
     <Link to={`/movie/${id}`} className={styles.movieCard}>
       <img
         className={styles.poster}
-        src={posterSrc}
+        src={posterSrc || fallbackPoster}
         alt={`${title}'s poster`}
       />
       <div className={styles.movieInfo}>

@@ -91,8 +91,12 @@ function Movie() {
         const movieResult = {
           id: movieData.id,
           title: movieData.title,
-          posterSrc: `https://image.tmdb.org/t/p/w500${movieData.poster_path}`,
-          backdropSrc: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`,
+          posterSrc:
+            movieData.poster_path &&
+            `https://image.tmdb.org/t/p/w500${movieData.poster_path}`,
+          backdropSrc:
+            movieData.poster_path &&
+            `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`,
           certification,
           releaseDate: formatDate(movieData.release_date),
           duration: formatRuntime(movieData.runtime),

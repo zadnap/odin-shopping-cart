@@ -3,6 +3,7 @@ import styles from './ProductItem.module.scss';
 import Button from '@/components/Button/Button';
 import { faStar, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import fallbackPoster from '@/assets/fallback-poster.jpg';
 
 function ProductItem({
   id,
@@ -28,7 +29,7 @@ function ProductItem({
     <article className={styles.productItem}>
       <img
         className={styles.backdrop}
-        src={backdropSrc}
+        src={backdropSrc || fallbackPoster}
         alt={`${title}'s backdrop`}
       />
       <div className={styles.info}>
