@@ -4,6 +4,7 @@ import FilteredMovieList from '@/components/FilteredMovieList/FilteredMovieList'
 import GenreFilter from '@/components/GenreFilter/GenreFilter';
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
+import MoviePagination from '../MoviePagination/MoviePagination';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -12,6 +13,8 @@ function MovieList() {
   const [genres, setGenres] = useState(null);
   const [movies, setMovies] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -40,12 +43,16 @@ function MovieList() {
   }, []);
 
   useEffect(() => {
+    setPage(1);
+  }, [genreId]);
+
+  useEffect(() => {
     const fetchMovies = async () => {
       setMovies(null);
 
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`
+          `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`
         );
 
         if (!response.ok)
@@ -69,13 +76,26 @@ function MovieList() {
         });
 
         setMovies(mappedMovies);
+        setTotalPages(data.total_pages);
       } catch (error) {
         setErrorMessage(error.message);
       }
     };
 
     fetchMovies();
-  }, [genreId]);
+  }, [genreId, page]);
+
+  const onPrev = () => {
+    setPage((prev) => prev - 1);
+  };
+
+  const onNext = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  const onJump = (pageNum) => {
+    setPage(pageNum);
+  };
 
   return (
     <section className={styles.movieList}>
@@ -91,6 +111,13 @@ function MovieList() {
             />
           )}
           {movies ? <FilteredMovieList movies={movies} /> : <Loader />}
+          <MoviePagination
+            page={page}
+            totalPages={totalPages}
+            onPrev={onPrev}
+            onNext={onNext}
+            onJump={onJump}
+          />
         </>
       )}
     </section>

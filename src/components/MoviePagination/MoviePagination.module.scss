@@ -1,0 +1,37 @@
+@use '@/styles/variables.scss' as *;
+
+.moviePagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: $gap;
+
+  .pageInputForm {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: $subbackground-color;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    color: $text-color;
+
+    .pageInput {
+      width: 4ch;
+      text-align: center;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: inherit;
+      border: 1px solid $text-color;
+      border-radius: 5px;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      appearance: textfield;
+    }
+  }
+}

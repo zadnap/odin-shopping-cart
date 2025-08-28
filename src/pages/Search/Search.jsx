@@ -3,6 +3,7 @@ import styles from './Search.module.scss';
 import FilteredMovieList from '@/components/FilteredMovieList/FilteredMovieList';
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
+import MoviePagination from '@/components/MoviePagination/MoviePagination';
 import { useEffect, useState } from 'react';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -10,10 +11,11 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 function Search() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
-  const page = searchParams.get('page') || 1;
 
   const [searchResults, setSearchResults] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -48,13 +50,26 @@ function Search() {
         if (mappedMovies.length === 0)
           throw new Error(`Could not find movies named ${query}`);
         else setSearchResults(mappedMovies);
+        setTotalPages(data.total_pages);
       } catch (error) {
         setErrorMessage(error.message);
       }
     };
 
     fetchMovies();
-  }, [query]);
+  }, [query, page]);
+
+  const onPrev = () => {
+    setPage((prev) => prev - 1);
+  };
+
+  const onNext = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  const onJump = (pageNum) => {
+    setPage(pageNum);
+  };
 
   return (
     <section className={styles.search}>
@@ -66,6 +81,13 @@ function Search() {
       ) : (
         <Loader />
       )}
+      <MoviePagination
+        page={page}
+        totalPages={totalPages}
+        onPrev={onPrev}
+        onNext={onNext}
+        onJump={onJump}
+      />
     </section>
   );
 }
