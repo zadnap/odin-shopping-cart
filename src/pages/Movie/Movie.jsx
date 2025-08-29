@@ -154,21 +154,19 @@ function Movie() {
     <section className={styles.movie}>
       {errorMessage ? (
         <ErrorMessage message={errorMessage} />
-      ) : (
+      ) : movie && casts && reviews ? (
         <>
-          {movie ? <MovieDetail movie={movie} /> : <Loader />}
-          {casts ? <CastList casts={casts} /> : <Loader />}
-          {reviews ? (
-            <Review
-              numberOfReview={reviews.length}
-              currentReview={reviews[reviewIndex]}
-              onPrev={handlePrevReview}
-              onNext={handleNextReview}
-            />
-          ) : (
-            <Loader />
-          )}
+          <MovieDetail movie={movie} />
+          <CastList casts={casts} />
+          <Review
+            numberOfReview={reviews.length}
+            currentReview={reviews[reviewIndex]}
+            onPrev={handlePrevReview}
+            onNext={handleNextReview}
+          />
         </>
+      ) : (
+        <Loader />
       )}
     </section>
   );

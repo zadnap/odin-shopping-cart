@@ -4,4 +4,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+
+  .movieList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    flex: 1;
+  }
 }
