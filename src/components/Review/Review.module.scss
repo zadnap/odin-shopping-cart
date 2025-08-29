@@ -25,15 +25,17 @@
       display: flex;
       align-items: center;
       margin-bottom: 15px;
+      gap: var(--gap);
 
       .profileImage {
         width: 50px;
         height: 50px;
         border-radius: $border-radius;
         object-fit: cover;
-        margin-right: 10px;
       }
       .authorInfo {
+        display: flex;
+        flex-direction: column;
         .name {
           font-size: 1.6rem;
           font-weight: 600;
@@ -61,6 +63,21 @@
         font-weight: 500;
         text-decoration: underline;
       }
+    }
+  }
+}
+
+@media (max-width: $mobile-max) {
+  .review .reviewArticle .info {
+    flex-direction: column;
+    gap: var(--gap);
+
+    .authorInfo {
+      align-items: center;
+    }
+
+    .rating {
+      margin: 0 auto;
     }
   }
 }

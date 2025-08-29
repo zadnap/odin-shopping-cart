@@ -117,3 +117,17 @@
     }
   }
 }
+
+@media (max-width: $mobile-max) {
+  .movieDetail .info .buttonGroup {
+    flex-direction: column;
+  }
+
+  .movieDetail .info .generalInfo .header {
+    flex-direction: column-reverse;
+
+    .rating {
+      align-self: self-end;
+    }
+  }
+}
