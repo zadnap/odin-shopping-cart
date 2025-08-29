@@ -104,3 +104,17 @@
     }
   }
 }
+
+@media (max-width: $tablet-max) {
+  .movieDetail {
+    flex-direction: column;
+    .poster {
+      display: none;
+    }
+
+    .info {
+      flex: 1;
+      justify-content: space-between;
+    }
+  }
+}
