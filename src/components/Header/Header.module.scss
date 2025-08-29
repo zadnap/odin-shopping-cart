@@ -45,6 +45,8 @@
     min-width: 0;
 
     .cartLink {
+      display: flex;
+      align-items: center;
       background-color: $subbackground-color;
       color: $text-color;
       padding: 6px 10px;
@@ -53,17 +55,19 @@
 
     .menu {
       display: none;
+      align-items: center;
     }
   }
 }
 
 @media (max-width: $tablet-max) {
-  .header .buttonGroup .menu {
-    display: flex;
-  }
-
-  .cartLink {
-    display: none;
+  .header .buttonGroup {
+    .cartLink {
+      display: none;
+    }
+    .menu {
+      display: flex;
+    }
   }
 }
 
