@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-function Navigation({ isOpenNav, setIsOpenNav }) {
+function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
   const [trailerPreviews, setTrailerPreviews] = useState([]);
 
   const topItems = [
@@ -78,7 +78,10 @@ function Navigation({ isOpenNav, setIsOpenNav }) {
 
   return (
     isOpenNav && (
-      <div className={styles.navOverlay} onClick={() => setIsOpenNav(false)}>
+      <div
+        className={styles.navOverlay}
+        onClick={isOnPc ? undefined : () => setIsOpenNav(false)}
+      >
         <nav className={styles.navigation}>
           <div className={styles.itemSet}>
             {topItems.map((item) => (

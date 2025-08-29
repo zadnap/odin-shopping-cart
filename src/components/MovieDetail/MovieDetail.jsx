@@ -107,8 +107,8 @@ function MovieDetail({ movie }) {
             <li className={styles.item}>
               <h2 className={styles.title}>Directors</h2>
               <p className={styles.description}>
-                {directors.map((director) => (
-                  <span key={director} className={styles.tag}>
+                {directors.map((director, index) => (
+                  <span key={index} className={styles.tag}>
                     {director}
                   </span>
                 ))}
@@ -119,8 +119,8 @@ function MovieDetail({ movie }) {
             <li className={styles.item}>
               <h2 className={styles.title}>Story</h2>
               <p className={styles.description}>
-                {writers.map((writer) => (
-                  <span key={writer} className={styles.tag}>
+                {writers.map((writer, index) => (
+                  <span key={index} className={styles.tag}>
                     {writer}
                   </span>
                 ))}

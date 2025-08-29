@@ -6,26 +6,18 @@ import { ScrollRestoration } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [isOpenNav, setIsOpenNav] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 1024px)');
-
-    setIsOpenNav(mediaQuery.matches);
-
-    const handleResize = (e) => {
-      setIsOpenNav(e.matches);
-    };
-
-    mediaQuery.addEventListener('change', handleResize);
-    return () => mediaQuery.removeEventListener('change', handleResize);
-  }, []);
+  const isOnPc = window.innerWidth >= 1024;
+  const [isOpenNav, setIsOpenNav] = useState(isOnPc);
 
   return (
     <div className={styles.app}>
       <Header isOpenNav={isOpenNav} setIsOpenNav={setIsOpenNav} />
       <div className={styles.body}>
-        <Navigation isOpenNav={isOpenNav} setIsOpenNav={setIsOpenNav} />
+        <Navigation
+          isOnPc={isOnPc}
+          isOpenNav={isOpenNav}
+          setIsOpenNav={setIsOpenNav}
+        />
         <main className={styles.outletContainer}>
           <Outlet />
         </main>
