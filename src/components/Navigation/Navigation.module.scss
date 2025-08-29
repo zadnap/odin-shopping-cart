@@ -4,14 +4,14 @@
 .navigation {
   display: flex;
   flex-direction: column;
-  gap: $gap;
+  gap: var(--gap);
   overflow-y: auto;
   position: sticky;
-  top: $header-height;
+  top: var(--header-height);
   background-color: $background-color;
   width: $navigation-width;
   flex-shrink: 0;
-  max-height: calc(100vh - $header-height);
+  max-height: calc(100vh - var(--header-height));
   scrollbar-width: none;
   -ms-overflow-style: none;
 
@@ -46,7 +46,7 @@
 
   .navigation {
     left: 0;
-    top: $header-height;
+    top: var(--header-height);
     bottom: 0;
     position: absolute;
     animation: flyInFromLeft ease 0.3s;

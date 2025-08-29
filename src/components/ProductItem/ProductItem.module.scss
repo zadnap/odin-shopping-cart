@@ -2,7 +2,7 @@
 
 .productItem {
   display: flex;
-  gap: $gap;
+  gap: var(--gap);
   border-bottom: 1px solid $subbackground-color;
   padding: 15px 0;
 

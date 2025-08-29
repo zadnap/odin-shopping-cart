@@ -3,5 +3,5 @@
 .home {
   display: flex;
   flex-direction: column;
-  gap: $gap;
+  gap: var(--gap);
 }

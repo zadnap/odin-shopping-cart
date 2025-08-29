@@ -3,6 +3,6 @@
 .movieList {
   display: flex;
   flex-direction: column;
-  gap: $gap;
+  gap: var(--gap);
   flex: 1;
 }

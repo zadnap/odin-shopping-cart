@@ -6,8 +6,18 @@ $overlay-color: #000000b7;
 
 $border-radius: 5px;
 $navigation-width: 250px;
-$header-height: 68.5px;
-$gap: 15px;
 
 $mobile-max: 425px;
 $tablet-max: 768px;
+
+:root {
+  --gap: 15px;
+  --header-height: 68.5px;
+}
+
+@media (max-width: $mobile-max) {
+  :root {
+    --gap: 5px;
+    --header-height: 48.5px;
+  }
+}

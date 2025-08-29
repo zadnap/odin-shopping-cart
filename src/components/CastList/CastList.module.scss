@@ -23,9 +23,9 @@
 
     .castList {
       display: flex;
-      gap: $gap;
+      gap: var(--gap);
       overflow-y: auto;
-      padding-bottom: 10px;
+      padding-bottom: var(--gap);
 
       .item {
         background-color: $subbackground-color;

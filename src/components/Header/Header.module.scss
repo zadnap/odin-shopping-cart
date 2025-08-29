@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $gap $gap $gap calc($gap + 10px);
+  padding: var(--gap) var(--gap) var(--gap) calc(var(--gap) * 1.1);
   position: sticky;
   top: 0;
   z-index: 3;
@@ -52,5 +52,11 @@
 @media (max-width: $tablet-max) {
   .header .buttonGroup .menu {
     display: flex;
+  }
+}
+
+@media (max-width: $mobile-max) {
+  .header .logo {
+    display: none;
   }
 }
