@@ -31,7 +31,7 @@
 
   .searchForm {
     flex: 1;
-    flex-basis: 500px;
+    max-width: 500px;
   }
 
   .buttonGroup {
@@ -64,12 +64,6 @@
 
 @media (max-width: $mobile-max) {
   .header .logo {
-    padding: 5px;
-    border-radius: $border-radius;
-    background-color: $subbackground-color;
-
-    .title {
-      display: none;
-    }
+    display: none;
   }
 }
