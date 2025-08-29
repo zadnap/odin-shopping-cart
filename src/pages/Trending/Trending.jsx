@@ -53,17 +53,19 @@ function Trending() {
     <section className={styles.trending}>
       <h2 className={styles.title}>Trending</h2>
       {trendingMovies ? (
-        <FilteredMovieList movies={trendingMovies} />
+        <>
+          <FilteredMovieList movies={trendingMovies} />
+          <MoviePagination
+            page={page}
+            totalPages={totalPages}
+            onPrev={onPrev}
+            onNext={onNext}
+            onJump={onJump}
+          />
+        </>
       ) : (
         <Loader />
       )}
-      <MoviePagination
-        page={page}
-        totalPages={totalPages}
-        onPrev={onPrev}
-        onNext={onNext}
-        onJump={onJump}
-      />
     </section>
   );
 }

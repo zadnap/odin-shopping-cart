@@ -53,17 +53,19 @@ function Upcoming() {
     <section className={styles.upcoming}>
       <h2 className={styles.title}>Upcoming</h2>
       {upcomingMovies ? (
-        <FilteredMovieList movies={upcomingMovies} />
+        <>
+          <FilteredMovieList movies={upcomingMovies} />
+          <MoviePagination
+            page={page}
+            totalPages={totalPages}
+            onPrev={onPrev}
+            onNext={onNext}
+            onJump={onJump}
+          />
+        </>
       ) : (
         <Loader />
       )}
-      <MoviePagination
-        page={page}
-        totalPages={totalPages}
-        onPrev={onPrev}
-        onNext={onNext}
-        onJump={onJump}
-      />
     </section>
   );
 }

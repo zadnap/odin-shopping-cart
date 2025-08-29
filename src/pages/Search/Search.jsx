@@ -79,17 +79,19 @@ function Search() {
       {errorMessage ? (
         <ErrorMessage message={errorMessage} />
       ) : searchResults ? (
-        <FilteredMovieList movies={searchResults} />
+        <>
+          <FilteredMovieList movies={searchResults} />
+          <MoviePagination
+            page={page}
+            totalPages={totalPages}
+            onPrev={onPrev}
+            onNext={onNext}
+            onJump={onJump}
+          />
+        </>
       ) : (
         <Loader />
       )}
-      <MoviePagination
-        page={page}
-        totalPages={totalPages}
-        onPrev={onPrev}
-        onNext={onNext}
-        onJump={onJump}
-      />
     </section>
   );
 }

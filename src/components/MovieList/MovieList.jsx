@@ -112,14 +112,20 @@ function MovieList() {
               genres={genres}
             />
           )}
-          {movies ? <FilteredMovieList movies={movies} /> : <Loader />}
-          <MoviePagination
-            page={page}
-            totalPages={totalPages}
-            onPrev={onPrev}
-            onNext={onNext}
-            onJump={onJump}
-          />
+          {movies ? (
+            <>
+              <FilteredMovieList movies={movies} />
+              <MoviePagination
+                page={page}
+                totalPages={totalPages}
+                onPrev={onPrev}
+                onNext={onNext}
+                onJump={onJump}
+              />
+            </>
+          ) : (
+            <Loader />
+          )}
         </>
       )}
     </section>

@@ -11,6 +11,7 @@ function Trailers() {
   const [trailers, setTrailers] = useState(null);
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const fetchTrailers = async () => {
@@ -52,7 +53,7 @@ function Trailers() {
         setTrailers(validTrailers);
         setTotalPages(popularData.total_pages);
       } catch (error) {
-        console.error('Failed to fetch trailers:', error);
+        setErrorMessage(error.message);
         setTrailers([]);
       }
     };
@@ -76,26 +77,28 @@ function Trailers() {
     <section className={styles.trailers}>
       {trailers ? (
         trailers.length > 0 ? (
-          <ul className={styles.trailerList}>
-            {trailers.map((trailer) => (
-              <li key={trailer.trailerKey} className={styles.item}>
-                <TrailerPreview {...trailer} />
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className={styles.trailerList}>
+              {trailers.map((trailer) => (
+                <li key={trailer.trailerKey} className={styles.item}>
+                  <TrailerPreview {...trailer} />
+                </li>
+              ))}
+            </ul>
+            <MoviePagination
+              page={page}
+              totalPages={totalPages}
+              onPrev={onPrev}
+              onNext={onNext}
+              onJump={onJump}
+            />
+          </>
         ) : (
-          <ErrorMessage message="No trailer available" />
+          <ErrorMessage message={errorMessage} />
         )
       ) : (
         <Loader />
       )}
-      <MoviePagination
-        page={page}
-        totalPages={totalPages}
-        onPrev={onPrev}
-        onNext={onNext}
-        onJump={onJump}
-      />
     </section>
   );
 }
