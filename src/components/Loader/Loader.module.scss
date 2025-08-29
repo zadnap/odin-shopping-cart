@@ -55,3 +55,9 @@
     font-size: 1.6rem;
   }
 }
+
+@media (max-width: $mobile-max) {
+  .loader {
+    padding: 50px;
+  }
+}
