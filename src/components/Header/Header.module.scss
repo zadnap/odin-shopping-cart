@@ -15,6 +15,7 @@
     align-items: center;
     gap: 15px;
     color: $text-color;
+    flex-shrink: 0;
 
     .logoImage {
       width: 30px;
@@ -30,12 +31,13 @@
 
   .searchForm {
     flex: 1;
-    max-width: 500px;
+    flex-basis: 500px;
   }
 
   .buttonGroup {
     display: flex;
     gap: 10px;
+    flex-shrink: 0;
 
     .cartLink {
       background-color: $subbackground-color;
