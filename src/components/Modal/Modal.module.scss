@@ -52,3 +52,9 @@
     }
   }
 }
+
+@media (max-width: $mobile-max) {
+  .modalOverlay .modalContainer {
+    width: 90%;
+  }
+}
