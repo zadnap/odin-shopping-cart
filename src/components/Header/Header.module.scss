@@ -3,7 +3,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: var(--gap) var(--gap) var(--gap) calc(var(--gap) * 1.1);
   position: sticky;
   top: 0;
@@ -52,6 +51,10 @@
 @media (max-width: $tablet-max) {
   .header .buttonGroup .menu {
     display: flex;
+  }
+
+  .cartLink {
+    display: none;
   }
 }
 

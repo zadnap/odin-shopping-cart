@@ -3,13 +3,13 @@
 .cart {
   display: flex;
   align-items: flex-start;
-  gap: 30px;
+  gap: var(--gap);
   width: 100%;
 
   .cartListContainer {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--gap);
     flex: 4;
     min-width: 0;
 
@@ -36,7 +36,7 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 10px;
-      padding-top: 10px;
+      padding: var(--gap);
 
       .supportText {
         font-size: 1.4rem;
@@ -73,5 +73,19 @@
   .cart {
     flex-direction: column-reverse;
     align-items: stretch;
+
+    .cartListContainer {
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: $mobile-max) {
+  .cart {
+    flex-direction: column;
+
+    .cartListContainer .footer .backToHomepage {
+      display: none;
+    }
   }
 }
