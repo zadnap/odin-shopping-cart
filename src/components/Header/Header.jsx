@@ -1,12 +1,13 @@
 import styles from './Header.module.scss';
 import Input from '@/components/Input/Input';
+import Button from '@/components/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-function Header() {
+function Header({ isOpenNav, setIsOpenNav }) {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
@@ -35,13 +36,24 @@ function Header() {
           onChange={(e) => setQuery(e.target.value)}
         />
       </form>
-      <Link
-        className={styles.cartLink}
-        to="/cart"
-        aria-label="View Shopping Cart"
-      >
-        <FontAwesomeIcon icon={faCartShopping} />
-      </Link>
+      <div className={styles.buttonGroup}>
+        <Link
+          className={styles.cartLink}
+          to="/cart"
+          aria-label="View Shopping Cart"
+        >
+          <FontAwesomeIcon icon={faCartShopping} />
+        </Link>
+        <Button
+          className={styles.menu}
+          aria-label="Open Navigation Menu"
+          aria-expanded={isOpenNav}
+          aria-controls="primary-navigation"
+          onClick={() => setIsOpenNav((prev) => !prev)}
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </Button>
+      </div>
     </header>
   );
 }

@@ -7,7 +7,7 @@
   padding: $gap $gap $gap calc($gap + 10px);
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   background-color: $background-color;
 
   .logo {
@@ -32,10 +32,25 @@
     width: 40%;
   }
 
-  .cartLink {
-    background-color: $subbackground-color;
-    color: $text-color;
-    padding: 6px 10px;
-    border-radius: $border-radius;
+  .buttonGroup {
+    display: flex;
+    gap: 10px;
+
+    .cartLink {
+      background-color: $subbackground-color;
+      color: $text-color;
+      padding: 6px 10px;
+      border-radius: $border-radius;
+    }
+
+    .menu {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: $tablet-max) {
+  .header .buttonGroup .menu {
+    display: flex;
   }
 }

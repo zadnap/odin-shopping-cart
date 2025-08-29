@@ -1,4 +1,5 @@
 @use '@/styles/variables.scss' as *;
+@use '@/styles/keyframes.scss' as *;
 
 .navigation {
   display: flex;
@@ -25,5 +26,29 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@media (max-width: $tablet-max) {
+  .navOverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $overlay-color;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn ease 0.1s;
+  }
+
+  .navigation {
+    left: 0;
+    top: $header-height;
+    bottom: 0;
+    position: absolute;
+    animation: flyInFromLeft ease 0.3s;
   }
 }

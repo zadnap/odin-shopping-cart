@@ -30,3 +30,14 @@
     transform: scale(1);
   }
 }
+
+@keyframes flyInFromLeft {
+  from {
+    opacity: 0.5;
+    transform: translateX(-40%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

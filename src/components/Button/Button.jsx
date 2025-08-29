@@ -7,6 +7,7 @@ function Button({
   disabled,
   onClick,
   children,
+  className,
   ...props
 }) {
   return (
@@ -15,7 +16,8 @@ function Button({
         ${styles.button} 
         ${round ? styles.round : ' '}
         ${square ? styles.square : ' '}
-        ${active ? styles.active : ''}
+        ${active ? styles.active : ' '}
+        ${className}
       `}
       disabled={disabled}
       onClick={onClick}

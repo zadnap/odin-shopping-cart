@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-function Navigation() {
+function Navigation({ isOpenNav, setIsOpenNav }) {
   const [trailerPreviews, setTrailerPreviews] = useState([]);
 
   const topItems = [
@@ -77,35 +77,39 @@ function Navigation() {
   }, []);
 
   return (
-    <nav className={styles.navigation}>
-      <div className={styles.itemSet}>
-        {topItems.map((item) => (
-          <li key={item.to}>
-            <NavItem icon={item.icon} to={item.to}>
-              {item.title}
+    isOpenNav && (
+      <div className={styles.navOverlay} onClick={() => setIsOpenNav(false)}>
+        <nav className={styles.navigation}>
+          <div className={styles.itemSet}>
+            {topItems.map((item) => (
+              <li key={item.to}>
+                <NavItem icon={item.icon} to={item.to}>
+                  {item.title}
+                </NavItem>
+              </li>
+            ))}
+          </div>
+          <div className={styles.itemSet} onClick={(e) => e.stopPropagation()}>
+            <NavItem icon={faFilm} to="/trailers">
+              Watching Trailers
             </NavItem>
-          </li>
-        ))}
+            <ul className={styles.trailerList}>
+              {trailerPreviews.map((preview) => (
+                <li className={styles.trailerItem} key={preview.id}>
+                  <TrailerPreview
+                    trailerKey={preview.trailerKey}
+                    title={preview.title}
+                    year={preview.year}
+                    backdropSrc={preview.backdropSrc}
+                    rating={preview.rating}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
       </div>
-      <div className={styles.itemSet}>
-        <NavItem icon={faFilm} to="/trailers">
-          Watching Trailers
-        </NavItem>
-        <ul className={styles.trailerList}>
-          {trailerPreviews.map((preview) => (
-            <li className={styles.trailerItem} key={preview.id}>
-              <TrailerPreview
-                trailerKey={preview.trailerKey}
-                title={preview.title}
-                year={preview.year}
-                backdropSrc={preview.backdropSrc}
-                rating={preview.rating}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
+    )
   );
 }
 
