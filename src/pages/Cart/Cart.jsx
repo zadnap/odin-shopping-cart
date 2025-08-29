@@ -131,7 +131,8 @@ function Cart() {
             now
           </p>
           <Link to="/" className={styles.backToHomepage}>
-            <FontAwesomeIcon icon={faArrowLeft} /> Go back to homepage
+            <FontAwesomeIcon icon={faArrowLeft} />
+            <span className={styles.text}>Home</span>
           </Link>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 .productItem {
   display: flex;
+  gap: $gap;
   border-bottom: 1px solid $subbackground-color;
   padding: 15px 0;
 
@@ -14,16 +15,22 @@
 
   .info {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
-    gap: $gap;
-    padding-left: 15px;
-    overflow-y: auto;
+    overflow: hidden;
+    min-width: 0;
+    gap: 3px;
 
     .title {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 500;
       color: $text-color;
+      display: block;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
       &:hover {
         text-decoration: underline;
@@ -34,7 +41,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: $subtext-color;
 
       .tag {
@@ -53,21 +60,22 @@
         color: yellow;
       }
     }
+  }
 
-    .rent {
-      .price {
-        font-size: 1.5rem;
-        background-color: green;
-        padding: 1px 10px;
-        border-radius: $border-radius;
-      }
-    }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    .buttonGroup {
+    .removeButton {
       margin-left: auto;
       display: flex;
       justify-content: flex-end;
       gap: 10px;
+    }
+
+    .rent {
+      font-size: 1.5rem;
     }
   }
 }

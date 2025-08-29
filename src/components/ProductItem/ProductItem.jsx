@@ -33,23 +33,25 @@ function ProductItem({
         alt={`${title}'s backdrop`}
       />
       <div className={styles.info}>
-        <div className={styles.header}>
-          <Link to={`/movie/${id}`} className={styles.title} role="heading">
-            {title}
-          </Link>
-          <div className={styles.movieMeta}>
-            <p className={styles.tag}>{certification}</p> |
-            <p className={styles.year}>{year}</p> |{' '}
-            <p className={styles.rating}>
-              <FontAwesomeIcon icon={faStar} /> <span>{rating}</span>
-            </p>
-          </div>
+        <Link to={`/movie/${id}`} className={styles.title} role="heading">
+          {title}
+        </Link>
+        <div className={styles.movieMeta}>
+          <p className={styles.tag}>{certification}</p> |
+          <p className={styles.year}>{year}</p> |{' '}
+          <p className={styles.rating}>
+            <FontAwesomeIcon icon={faStar} /> <span>{rating}</span>
+          </p>
         </div>
-        <div className={styles.buttonGroup}>
-          <Button square onClick={handleCancelRenting}>
-            <FontAwesomeIcon icon={faTrash} />
-          </Button>
-        </div>
+      </div>
+      <div className={styles.actions}>
+        <Button
+          square
+          onClick={handleCancelRenting}
+          className={styles.removeButton}
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </Button>
         <p className={styles.rent}>${rent}</p>
       </div>
     </article>
