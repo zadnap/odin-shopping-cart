@@ -27,10 +27,10 @@ function Header({ isOpenNav, setIsOpenNav }) {
       </Link>
       <form role="search" className={styles.searchForm} onSubmit={handleSearch}>
         <label htmlFor="header-search" className="sr-only">
-          Search Movies
+          Search for Movies
         </label>
         <Input
-          placeholder="Movies, series, shows..."
+          placeholder="Search..."
           id="header-search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}

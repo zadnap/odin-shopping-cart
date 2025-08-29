@@ -15,10 +15,12 @@
     align-items: center;
     gap: 15px;
     color: $text-color;
-    flex-shrink: 0;
+    flex: 0 0 auto;
+    min-width: 0;
 
     .logoImage {
       width: 30px;
+      flex-shrink: 0;
     }
 
     .title {
@@ -30,14 +32,16 @@
   }
 
   .searchForm {
-    flex: 1;
     max-width: 500px;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .buttonGroup {
     display: flex;
     gap: 10px;
-    flex-shrink: 0;
+    flex: 0 0 auto;
+    min-width: 0;
 
     .cartLink {
       background-color: $subbackground-color;
@@ -63,7 +67,14 @@
 }
 
 @media (max-width: $mobile-max) {
-  .header .logo {
-    display: none;
+  .header {
+    .logo {
+      background-color: $subbackground-color;
+      border-radius: 5px;
+      padding: 3px 5px;
+      .title {
+        display: none;
+      }
+    }
   }
 }
