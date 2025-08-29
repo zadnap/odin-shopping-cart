@@ -21,6 +21,7 @@ function Search() {
     const fetchMovies = async () => {
       try {
         setSearchResults(null);
+        setErrorMessage(null);
 
         const response = await fetch(
           `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&page=${page}&language=en-US`
@@ -29,7 +30,7 @@ function Search() {
         if (!response.ok) {
           throw new Error(
             (response.status === 404
-              ? `Could not find movies named ${query}`
+              ? `Could not find movies named ${query}. `
               : 'Something went wrong while fetching movie data. ') +
               'Please try again later.'
           );
@@ -37,21 +38,20 @@ function Search() {
 
         const data = await response.json();
 
-        const mappedMovies = data.results.map((movie) => {
-          return {
-            id: movie.id,
-            title: movie.title,
-            year: movie.release_date ? movie.release_date.slice(0, 4) : 'N/A',
-            rating: movie.vote_average?.toFixed(1) ?? 'N/A',
-            posterSrc:
-              movie.poster_path &&
-              `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
-          };
-        });
+        const mappedMovies = data.results.map((movie) => ({
+          id: movie.id,
+          title: movie.title,
+          year: movie.release_date ? movie.release_date.slice(0, 4) : 'N/A',
+          rating: movie.vote_average?.toFixed(1) ?? 'N/A',
+          posterSrc:
+            movie.poster_path &&
+            `https://image.tmdb.org/t/p/w342${movie.poster_path}`,
+        }));
 
         if (mappedMovies.length === 0)
-          throw new Error(`Could not find movies named ${query}`);
+          throw new Error(`Could not find movies named ${query}.`);
         else setSearchResults(mappedMovies);
+
         setTotalPages(data.total_pages);
       } catch (error) {
         setErrorMessage(error.message);
