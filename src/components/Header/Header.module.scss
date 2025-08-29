@@ -9,6 +9,7 @@
   top: 0;
   z-index: 3;
   background-color: $background-color;
+  overflow-x: hidden;
 
   .logo {
     display: flex;
