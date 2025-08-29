@@ -64,3 +64,18 @@
     }
   }
 }
+
+@media (max-width: $mobile-max) {
+  .showcase .movieInfo {
+    padding: var(--gap);
+    gap: var(--gap);
+
+    .title {
+      font-size: 1.6rem;
+    }
+
+    .desc {
+      font-size: 1.4rem;
+    }
+  }
+}
