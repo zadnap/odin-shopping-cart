@@ -78,7 +78,7 @@ function Trailers() {
         trailers.length > 0 ? (
           <ul className={styles.trailerList}>
             {trailers.map((trailer) => (
-              <li key={trailer.key} className={styles.item}>
+              <li key={trailer.trailerKey} className={styles.item}>
                 <TrailerPreview {...trailer} />
               </li>
             ))}

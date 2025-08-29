@@ -89,11 +89,14 @@ function Navigation({ isOpenNav, setIsOpenNav }) {
               </li>
             ))}
           </div>
-          <div className={styles.itemSet} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.itemSet}>
             <NavItem icon={faFilm} to="/trailers">
               Watching Trailers
             </NavItem>
-            <ul className={styles.trailerList}>
+            <ul
+              className={styles.trailerList}
+              onClick={(e) => e.stopPropagation()}
+            >
               {trailerPreviews.map((preview) => (
                 <li className={styles.trailerItem} key={preview.id}>
                   <TrailerPreview
