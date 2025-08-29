@@ -10,7 +10,6 @@
   background-size: cover;
   background-position: center;
   z-index: 1;
-  height: calc(100vh - $header-height);
 
   &::before {
     border-radius: $border-radius;
@@ -27,7 +26,7 @@
   .poster {
     border-radius: $border-radius;
     object-fit: cover;
-    height: 100%;
+    width: 40%;
   }
 
   .info {
