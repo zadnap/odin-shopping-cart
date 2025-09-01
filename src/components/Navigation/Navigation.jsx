@@ -9,12 +9,15 @@ import {
 import NavItem from '../NavItem/NavItem';
 import styles from './Navigation.module.scss';
 import TrailerPreview from '@/components/TrailerPreview/TrailerPreview';
+import Loader from '@/components/Loader/Loader';
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import { useEffect, useState } from 'react';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
-  const [trailerPreviews, setTrailerPreviews] = useState([]);
+  const [trailerPreviews, setTrailerPreviews] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const topItems = [
     {
@@ -45,39 +48,78 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
   ];
 
   useEffect(() => {
-    async function getPopularMovieTrailers(numberOfTrailers) {
-      const popularRes = await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-      );
-      const popularData = await popularRes.json();
-
-      const trailers = [];
-
-      for (let movie of popularData.results.slice(0, numberOfTrailers)) {
-        const videoRes = await fetch(
-          `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`
-        );
-        const videoData = await videoRes.json();
-
-        const trailer = videoData.results.find(
-          (v) => v.type === 'Trailer' && v.site === 'YouTube'
+    const getPopularMovieTrailers = async (numberOfTrailers) => {
+      try {
+        const popularRes = await fetch(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
         );
 
-        if (trailer) {
-          trailers.push({
-            id: movie.id,
-            title: movie.title,
-            year: movie.release_date.slice(0, 4),
-            rating: movie.vote_average.toFixed(1),
-            backdropSrc: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
-            trailerUrl: `https://www.youtube.com/watch?v=${trailer.key}`,
-            trailerKey: trailer.key,
-          });
+        if (!popularRes.ok) {
+          throw new Error(
+            `Failed to fetch popular movies: ${popularRes.status} ${popularRes.statusText}`
+          );
         }
-      }
 
-      setTrailerPreviews(trailers);
-    }
+        const popularData = await popularRes.json();
+
+        if (!popularData.results || !Array.isArray(popularData.results)) {
+          throw new Error('Popular movies response format invalid');
+        }
+
+        const trailers = [];
+
+        for (let movie of popularData.results.slice(0, numberOfTrailers)) {
+          try {
+            const videoRes = await fetch(
+              `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`
+            );
+
+            if (!videoRes.ok) {
+              throw new Error(
+                `Failed to fetch videos for movie ID ${movie.id}`
+              );
+            }
+
+            const videoData = await videoRes.json();
+
+            if (!videoData.results) continue;
+
+            const trailer = videoData.results.find(
+              (v) => v.type === 'Trailer' && v.site === 'YouTube'
+            );
+
+            if (trailer) {
+              trailers.push({
+                id: movie.id,
+                title: movie.title ?? 'Untitled',
+                year: movie.release_date
+                  ? movie.release_date.slice(0, 4)
+                  : 'N/A',
+                rating: movie.vote_average
+                  ? movie.vote_average.toFixed(1)
+                  : 'N/A',
+                backdropSrc: movie.backdrop_path
+                  ? `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`
+                  : null,
+                trailerUrl: `https://www.youtube.com/watch?v=${trailer.key}`,
+                trailerKey: trailer.key,
+              });
+            }
+          } catch (movieError) {
+            console.warn(
+              `Skipping movie ID ${movie.id} due to error:`,
+              movieError
+            );
+          }
+        }
+
+        setTrailerPreviews(trailers);
+      } catch (error) {
+        setErrorMessage(
+          error.message || 'Something went wrong while fetching trailers'
+        );
+      }
+    };
 
     getPopularMovieTrailers(5);
   }, []);
@@ -108,17 +150,23 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
               className={styles.trailerList}
               onClick={(e) => e.stopPropagation()}
             >
-              {trailerPreviews.map((preview) => (
-                <li className={styles.trailerItem} key={preview.id}>
-                  <TrailerPreview
-                    trailerKey={preview.trailerKey}
-                    title={preview.title}
-                    year={preview.year}
-                    backdropSrc={preview.backdropSrc}
-                    rating={preview.rating}
-                  />
-                </li>
-              ))}
+              {errorMessage ? (
+                <ErrorMessage message={errorMessage} />
+              ) : trailerPreviews ? (
+                trailerPreviews.map((preview) => (
+                  <li className={styles.trailerItem} key={preview.id}>
+                    <TrailerPreview
+                      trailerKey={preview.trailerKey}
+                      title={preview.title}
+                      year={preview.year}
+                      backdropSrc={preview.backdropSrc}
+                      rating={preview.rating}
+                    />
+                  </li>
+                ))
+              ) : (
+                <Loader />
+              )}
             </ul>
           </div>
         </nav>
