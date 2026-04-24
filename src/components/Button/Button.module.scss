@@ -12,6 +12,10 @@
   border-radius: 5px;
   padding: 7px 12px;
   font-size: 1.4rem;
+  transition:
+    transform ease 0.2s,
+    color ease 0.2s,
+    border ease 0.2s;
 
   &.round {
     border-radius: 100px;
@@ -30,5 +34,9 @@
     cursor: auto;
     opacity: 0.6;
     color: $subtext-color;
+  }
+
+  &:active {
+    transform: scale(0.9);
   }
 }

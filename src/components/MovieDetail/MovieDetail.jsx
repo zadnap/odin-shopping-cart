@@ -118,12 +118,22 @@ function MovieDetail({ movie }) {
           </li>
         </ul>
         <div className={styles.buttonGroup}>
-          <Button onClick={handleFavourite}>
+          <Button
+            onClick={handleFavourite}
+            className={`${styles.handleFavouritebtn} ${favourites.find((fav) => fav === id) ? styles.liked : ''}`}
+            aria-label={
+              favourites.find((fav) => fav === id) ? 'Unlike' : 'Like'
+            }
+          >
             <FontAwesomeIcon icon={faHeart} />{' '}
-            {favourites.find((fav) => fav === id) ? 'Unfavourite' : 'Favourite'}
+            {favourites.find((fav) => fav === id) ? 'Liked' : 'Like'}
           </Button>
-          <Button onClick={() => setIsOpenModal(true)}>
-            <FontAwesomeIcon icon={faPlay} /> Play trailer
+          <Button
+            onClick={() => setIsOpenModal(true)}
+            aria-label="Watch movie trailer"
+          >
+            <FontAwesomeIcon icon={faPlay} />
+            Trailer
           </Button>
         </div>
       </div>
