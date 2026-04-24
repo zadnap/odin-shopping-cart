@@ -4,7 +4,7 @@ import Button from '@/components/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 function Header({ isOpenNav, setIsOpenNav }) {
@@ -37,13 +37,6 @@ function Header({ isOpenNav, setIsOpenNav }) {
         />
       </form>
       <div className={styles.buttonGroup}>
-        <Link
-          className={styles.cartLink}
-          to="/cart"
-          aria-label="View Shopping Cart"
-        >
-          <FontAwesomeIcon icon={faCartShopping} />
-        </Link>
         <Button
           className={styles.menu}
           aria-label="Open Navigation Menu"

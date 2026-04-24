@@ -4,7 +4,6 @@ import {
   faFilm,
   faFire,
   faHeart,
-  faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import NavItem from '../NavItem/NavItem';
 import styles from './Navigation.module.scss';
@@ -39,11 +38,6 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
       to: '/trending',
       icon: faFire,
       title: 'Trending',
-    },
-    {
-      to: '/cart',
-      icon: faShoppingCart,
-      title: 'Cart',
     },
   ];
 
@@ -132,15 +126,13 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
       >
         <nav className={styles.navigation}>
           <div className={styles.itemSet}>
-            {topItems
-              .filter((item) => !(isOnPc && item.to === '/cart'))
-              .map((item) => (
-                <li key={item.to}>
-                  <NavItem icon={item.icon} to={item.to}>
-                    {item.title}
-                  </NavItem>
-                </li>
-              ))}
+            {topItems.map((item) => (
+              <li key={item.to}>
+                <NavItem icon={item.icon} to={item.to}>
+                  {item.title}
+                </NavItem>
+              </li>
+            ))}
           </div>
           <div className={styles.itemSet}>
             <NavItem icon={faFilm} to="/trailers">

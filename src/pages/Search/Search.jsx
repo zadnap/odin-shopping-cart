@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import styles from './Search.module.scss';
 import FilteredMovieList from '@/components/FilteredMovieList/FilteredMovieList';
 import Loader from '@/components/Loader/Loader';

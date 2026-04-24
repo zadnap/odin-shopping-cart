@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '@/components/Header/Header';
 import Navigation from '@/components/Navigation/Navigation';
 import { ScrollRestoration } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function App() {
   const isOnPc = window.innerWidth >= 1024;
