@@ -23,7 +23,7 @@ function Header({ isOpenNav, setIsOpenNav }) {
     <header className={styles.header} role="banner">
       <Link className={styles.logo} to="/">
         <img className={styles.logoImage} src={logo} alt="Homepage" />
-        <span className={styles.title}>Cinemart</span>
+        <span className={styles.title}>CineMatch</span>
       </Link>
       <form role="search" className={styles.searchForm} onSubmit={handleSearch}>
         <label htmlFor="header-search" className="sr-only">

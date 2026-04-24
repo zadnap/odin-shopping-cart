@@ -19,7 +19,7 @@ exports[`Header > should render to match snapshot 1`] = `
       <span
         class="_title_d975ee"
       >
-        Cinemart
+        CineMatch
       </span>
     </a>
     <form
