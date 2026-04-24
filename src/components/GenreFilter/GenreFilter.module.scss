@@ -24,7 +24,7 @@
     width: calc(100% - 45px);
     overflow-x: auto;
     scroll-behavior: smooth;
-    gap: var(--gap);
+    gap: calc(var(--gap) / 2);
     scrollbar-width: none;
     -ms-overflow-style: none;
 
