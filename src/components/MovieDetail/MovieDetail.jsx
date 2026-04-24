@@ -3,12 +3,7 @@ import styles from './MovieDetail.module.scss';
 import Button from '@/components/Button/Button';
 import Modal from '@/components/Modal/Modal';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer';
-import {
-  faPlay,
-  faHeart,
-  faCartPlus,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import fallbackPoster from '@/assets/fallback-poster.jpg';
 import fallbackBackdrop from '@/assets/fallback-backdrop.jpg';
@@ -29,31 +24,15 @@ function MovieDetail({ movie }) {
     directors,
     writers,
     trailerKey,
-    rent,
   } = movie;
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [rents, setRents] = useState(
-    JSON.parse(localStorage.getItem('rents')) || []
-  );
   const [favourites, setFavourites] = useState(
     JSON.parse(localStorage.getItem('favourites')) || []
   );
 
   useEffect(() => {
-    localStorage.setItem('rents', JSON.stringify(rents));
-  }, [rents]);
-
-  useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(favourites));
   }, [favourites]);
-
-  const handleRent = () => {
-    if (!rents.includes(id)) {
-      setRents([...rents, id]);
-    } else {
-      setRents(rents.filter((rent) => rent !== id));
-    }
-  };
 
   const handleFavourite = () => {
     if (!favourites.includes(id)) {
@@ -139,13 +118,9 @@ function MovieDetail({ movie }) {
           </li>
         </ul>
         <div className={styles.buttonGroup}>
-          <Button onClick={handleRent}>
-            <FontAwesomeIcon icon={faCartPlus} />{' '}
-            {rents.find((rent) => rent === id) ? 'Cancel' : 'Rent'}: ${rent}
-          </Button>
           <Button onClick={handleFavourite}>
             <FontAwesomeIcon icon={faHeart} />{' '}
-            {favourites.find((fav) => fav === id) ? 'Unfavorite' : 'Favourite'}
+            {favourites.find((fav) => fav === id) ? 'Unfavourite' : 'Favourite'}
           </Button>
           <Button onClick={() => setIsOpenModal(true)}>
             <FontAwesomeIcon icon={faPlay} /> Play trailer

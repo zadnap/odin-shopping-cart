@@ -116,7 +116,6 @@ function Movie() {
             )
             .map((person) => person.name),
           trailerKey: trailer?.key,
-          rent: 4.99,
         };
 
         const castResult = creditsData.cast.map((cast) => ({
