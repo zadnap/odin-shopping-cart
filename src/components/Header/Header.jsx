@@ -46,8 +46,15 @@ function Header({ isOpenNav, setIsOpenNav }) {
         >
           <FontAwesomeIcon icon={faBars} />
         </Button>
-        <Button outline>Sign Up</Button>
-        <Button>Sign In</Button>
+        <Link
+          to="/auth/sign-up"
+          className={`${styles.authBtn} ${styles.signUpBtn}`}
+        >
+          Sign Up
+        </Link>
+        <Link to="/auth/sign-in" className={styles.authBtn}>
+          Sign In
+        </Link>
         <span className={styles.username}>@zadnap</span>
       </div>
     </header>
