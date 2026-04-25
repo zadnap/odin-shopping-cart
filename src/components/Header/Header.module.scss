@@ -59,7 +59,8 @@
       transition:
         transform ease 0.2s,
         color ease 0.2s,
-        border ease 0.2s;
+        border ease 0.2s,
+        background-color ease 0.2s;
 
       &.signInBtn {
         background-color: $accent-color;
