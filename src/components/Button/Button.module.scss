@@ -17,6 +17,10 @@
     color ease 0.2s,
     border ease 0.2s;
 
+  &.accent {
+    background-color: $accent-color;
+  }
+
   &.outline {
     background-color: transparent;
     border: 1px solid $subbackground-color;

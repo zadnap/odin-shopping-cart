@@ -4,7 +4,7 @@ import Button from '@/components/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 function Header({ isOpenNav, setIsOpenNav }) {
@@ -30,6 +30,7 @@ function Header({ isOpenNav, setIsOpenNav }) {
           Search for Movies
         </label>
         <Input
+          icon={faMagnifyingGlass}
           placeholder="Search..."
           id="header-search"
           value={query}
@@ -52,7 +53,10 @@ function Header({ isOpenNav, setIsOpenNav }) {
         >
           Sign Up
         </Link>
-        <Link to="/auth/sign-in" className={styles.authBtn}>
+        <Link
+          to="/auth/sign-in"
+          className={`${styles.authBtn} ${styles.signInBtn}`}
+        >
           Sign In
         </Link>
         <span className={styles.username}>@zadnap</span>

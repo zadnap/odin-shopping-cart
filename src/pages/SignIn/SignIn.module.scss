@@ -1,0 +1,76 @@
+@use '@/styles/variables.scss' as *;
+
+.signIn {
+  background-color: $background-color;
+  border-radius: 5px;
+  padding: 30px 20px;
+  color: $text-color;
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  border: 1px solid $subbackground-color;
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .brandName {
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      align-self: center;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      font-size: 1.4rem;
+      line-height: 1;
+
+      .appLogo {
+        width: 20px;
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .formField {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .error {
+      color: #e9d502;
+    }
+
+    .submitBtn {
+      width: 100%;
+      font-weight: 600;
+      font-size: 1.6rem;
+    }
+  }
+
+  .authSwitch {
+    text-align: center;
+    font-size: 1.4rem;
+
+    a {
+      color: $accent-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

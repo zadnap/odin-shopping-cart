@@ -61,6 +61,10 @@
         color ease 0.2s,
         border ease 0.2s;
 
+      &.signInBtn {
+        background-color: $accent-color;
+      }
+
       &.signUpBtn {
         background-color: transparent;
         border: 1px solid $subbackground-color;
