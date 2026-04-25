@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp/SignUp';
 import MainLayout from './layouts/MainLayout/MainLayout';
 import AuthLayout from './layouts/AuthLayout/AuthLayout';
 import { Navigate } from 'react-router-dom';
+import Onboarding from './pages/Onboarding/Onboarding';
 
 const routes = [
   {
@@ -39,6 +40,10 @@ const routes = [
           { path: 'sign-in', element: <SignIn /> },
           { path: 'sign-up', element: <SignUp /> },
         ],
+      },
+      {
+        path: 'onboarding',
+        element: <Onboarding />,
       },
     ],
   },
