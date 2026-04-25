@@ -4,7 +4,9 @@ import styles from './AuthLayout.module.scss';
 const AuthLayout = () => {
   return (
     <section className={styles.authLayout}>
-      <Outlet />
+      <div className={styles.authOverlay}>
+        <Outlet />
+      </div>
     </section>
   );
 };
