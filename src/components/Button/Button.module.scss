@@ -17,6 +17,15 @@
     color ease 0.2s,
     border ease 0.2s;
 
+  &.outline {
+    background-color: transparent;
+    border: 1px solid $subbackground-color;
+
+    &:hover {
+      background-color: $subbackground-color;
+    }
+  }
+
   &.round {
     border-radius: 100px;
   }
