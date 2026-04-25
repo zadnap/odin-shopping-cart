@@ -7,6 +7,11 @@ import Trailers from './pages/Trailers/Trailers';
 import Favourites from './pages/Favourites/Favourites';
 import Search from './pages/Search/Search';
 import Error from './pages/Error/Error';
+import SignIn from './pages/SignIn/SignIn';
+import SignUp from './pages/SignUp/SignUp';
+import MainLayout from './layouts/MainLayout/MainLayout';
+import AuthLayout from './layouts/AuthLayout/AuthLayout';
+import { Navigate } from 'react-router-dom';
 
 const routes = [
   {
@@ -14,13 +19,27 @@ const routes = [
     element: <App />,
     errorElement: <Error />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/movie/:id', element: <Movie /> },
-      { path: `/trailers`, element: <Trailers /> },
-      { path: '/upcoming', element: <Upcoming /> },
-      { path: '/trending', element: <Trending /> },
-      { path: '/favourites', element: <Favourites /> },
-      { path: '/search', element: <Search /> },
+      {
+        element: <MainLayout />,
+        children: [
+          { index: true, element: <Home /> },
+          { path: 'movie/:id', element: <Movie /> },
+          { path: 'trailers', element: <Trailers /> },
+          { path: 'upcoming', element: <Upcoming /> },
+          { path: 'trending', element: <Trending /> },
+          { path: 'favourites', element: <Favourites /> },
+          { path: 'search', element: <Search /> },
+        ],
+      },
+      {
+        path: 'auth',
+        element: <AuthLayout />,
+        children: [
+          { index: true, element: <Navigate to="sign-in" replace /> },
+          { path: 'sign-in', element: <SignIn /> },
+          { path: 'sign-up', element: <SignUp /> },
+        ],
+      },
     ],
   },
 ];

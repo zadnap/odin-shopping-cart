@@ -1,6 +1,6 @@
-@use './styles/variables.scss' as *;
+@use '@/styles/variables.scss' as *;
 
-.app {
+.mainLayout {
   color: $text-color;
   background-color: $background-color;
   min-height: 100vh;
