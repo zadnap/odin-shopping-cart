@@ -50,6 +50,31 @@
       align-items: center;
     }
 
+    .authBtn {
+      font-size: 1.4rem;
+      color: $text-color;
+      padding: 7px 12px;
+      background-color: $subbackground-color;
+      border-radius: 5px;
+      transition:
+        transform ease 0.2s,
+        color ease 0.2s,
+        border ease 0.2s;
+
+      &.signUpBtn {
+        background-color: transparent;
+        border: 1px solid $subbackground-color;
+
+        &:hover {
+          background-color: $subbackground-color;
+        }
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+
     .username {
       padding: 5px 12px;
       background-color: $subbackground-color;
