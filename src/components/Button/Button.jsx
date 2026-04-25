@@ -3,6 +3,7 @@ import styles from './Button.module.scss';
 function Button({
   round,
   square,
+  outline,
   active,
   disabled,
   onClick,
@@ -15,6 +16,7 @@ function Button({
       className={`
         ${styles.button} 
         ${round ? styles.round : ' '}
+        ${outline ? styles.outline : ' '}
         ${square ? styles.square : ' '}
         ${active ? styles.active : ' '}
         ${className}

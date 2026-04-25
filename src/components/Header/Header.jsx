@@ -46,6 +46,9 @@ function Header({ isOpenNav, setIsOpenNav }) {
         >
           <FontAwesomeIcon icon={faBars} />
         </Button>
+        <Button outline>Sign Up</Button>
+        <Button>Sign In</Button>
+        <span className={styles.username}>@zadnap</span>
       </div>
     </header>
   );
