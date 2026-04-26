@@ -11,10 +11,12 @@ import TrailerPreview from '@/components/TrailerPreview/TrailerPreview';
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import { useEffect, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
+  const { user } = useAuth();
   const [trailerPreviews, setTrailerPreviews] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -40,6 +42,10 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
       title: 'Trending',
     },
   ];
+  const filteredItems = topItems.filter((item) => {
+    if (item.to === '/favourites' && !user) return false;
+    return true;
+  });
 
   useEffect(() => {
     const getPopularMovieTrailers = async (numberOfTrailers) => {
@@ -126,7 +132,7 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
       >
         <nav className={styles.navigation}>
           <div className={styles.itemSet}>
-            {topItems.map((item) => (
+            {filteredItems.map((item) => (
               <li key={item.to}>
                 <NavItem icon={item.icon} to={item.to}>
                   {item.title}

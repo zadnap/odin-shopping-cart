@@ -6,8 +6,10 @@ import logo from '@/assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 function Header({ isOpenNav, setIsOpenNav }) {
+  const { user, signOut } = useAuth();
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
@@ -47,19 +49,29 @@ function Header({ isOpenNav, setIsOpenNav }) {
         >
           <FontAwesomeIcon icon={faBars} />
         </Button>
-        <Link
-          to="/auth/sign-up"
-          className={`${styles.authBtn} ${styles.signUpBtn}`}
-        >
-          Sign Up
-        </Link>
-        <Link
-          to="/auth/sign-in"
-          className={`${styles.authBtn} ${styles.signInBtn}`}
-        >
-          Sign In
-        </Link>
-        <span className={styles.username}>@zadnap</span>
+        {!user ? (
+          <>
+            <Link
+              to="/auth/sign-up"
+              className={`${styles.authBtn} ${styles.signUpBtn}`}
+            >
+              Sign Up
+            </Link>
+            <Link
+              to="/auth/sign-in"
+              className={`${styles.authBtn} ${styles.signInBtn}`}
+            >
+              Sign In
+            </Link>
+          </>
+        ) : (
+          <>
+            <span className={styles.username}>@{user.username}</span>
+            <Button onClick={signOut} outline className={styles.signOutBtn}>
+              Sign Out
+            </Button>
+          </>
+        )}
       </div>
     </header>
   );
