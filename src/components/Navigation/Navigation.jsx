@@ -18,6 +18,7 @@ import useAuth from '../../hooks/useAuth';
 import Button from '../Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Popup from '../Popup/Popup';
+import usePopup from '../../hooks/usePopup';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -25,11 +26,18 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
   const { user, signOut } = useAuth();
   const [trailerPreviews, setTrailerPreviews] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [isShowPopup, setIsShowPopup] = useState(false);
+  const { showPopup, hidePopup } = usePopup();
 
-  const handleConfirmSignOut = () => {
-    signOut();
-    setIsShowPopup(false);
+  const handleSignOut = () => {
+    showPopup({
+      title: 'Sign Out',
+      content: 'Are you sure to sign out of CineMatch?',
+      onConfirm: () => {
+        signOut();
+        hidePopup();
+      },
+      onCancel: hidePopup,
+    });
   };
 
   const topItems = [
@@ -152,7 +160,7 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
                     outline
                     onClick={(e) => {
                       e.stopPropagation();
-                      setIsShowPopup(true);
+                      handleSignOut();
                     }}
                     className={styles.signOutBtn}
                     aria-label="Sign out"
@@ -213,14 +221,6 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
             </ul>
           </div>
         </nav>
-
-        <Popup
-          isOpen={isShowPopup}
-          title="Sign Out"
-          content="Are you sure to sign out of CineMatch?"
-          onConfirm={handleConfirmSignOut}
-          onCancel={() => setIsShowPopup(false)}
-        />
       </div>
     )
   );
