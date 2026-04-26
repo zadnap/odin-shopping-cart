@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import logo from '@/assets/logo.png';
@@ -7,6 +7,8 @@ import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 
 const SignIn = () => {
+  const location = useLocation();
+  const message = location.state?.message;
   const { signIn, loading, error } = useAuth();
   const [form, setForm] = useState({
     username: '',
@@ -35,6 +37,7 @@ const SignIn = () => {
           <img className={styles.appLogo} src={logo} alt="" />
         </p>
         <h1>Sign In</h1>
+        {message && <p className={styles.success}>{message}</p>}
 
         <div className={styles.formField}>
           <label htmlFor="username">Username</label>
