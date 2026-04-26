@@ -11,11 +11,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import Popup from '../Popup/Popup';
 
 function Header({ isOpenNav, setIsOpenNav }) {
   const { user, signOut } = useAuth();
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
+  const [isShowPopup, setIsShowPopup] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -23,6 +25,11 @@ function Header({ isOpenNav, setIsOpenNav }) {
     if (query.trim()) {
       navigate(`/search?query=${encodeURIComponent(query)}`);
     }
+  };
+
+  const handleConfirmSignOut = () => {
+    signOut();
+    setIsShowPopup(false);
   };
 
   return (
@@ -72,7 +79,7 @@ function Header({ isOpenNav, setIsOpenNav }) {
           <>
             <span className={styles.username}>@{user.username}</span>
             <Button
-              onClick={signOut}
+              onClick={() => setIsShowPopup(true)}
               outline
               className={`${styles.authBtn} ${styles.signOutBtn}`}
               aria-label="Sign out"
@@ -82,6 +89,14 @@ function Header({ isOpenNav, setIsOpenNav }) {
           </>
         )}
       </div>
+
+      <Popup
+        isOpen={isShowPopup}
+        title="Sign Out"
+        content="Are you sure to sign out of CineMatch?"
+        onConfirm={handleConfirmSignOut}
+        onCancel={() => setIsShowPopup(false)}
+      />
     </header>
   );
 }
