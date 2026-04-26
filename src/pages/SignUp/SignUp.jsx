@@ -3,11 +3,43 @@ import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import logo from '@/assets/logo.png';
 import styles from './SignUp.module.scss';
+import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
 
 const SignUp = () => {
+  const { signUp, loading, error } = useAuth();
+  const [form, setForm] = useState({
+    username: '',
+    password: '',
+    passwordConfirmation: '',
+  });
+  const isPasswordMatch = form.password === form.passwordConfirmation;
+  const formError = !isPasswordMatch ? 'Password does not match' : error;
+  const buttonDisabled =
+    !form.username ||
+    !form.password ||
+    !form.passwordConfirmation ||
+    loading ||
+    !isPasswordMatch;
+
+  const handleChange = ({ target: { name, value } }) => {
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isPasswordMatch) return;
+
+    await signUp(form);
+  };
+
   return (
     <section className={styles.signUp}>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <p className={styles.brandName}>
           CineMatch
           <img className={styles.appLogo} src={logo} alt="" />
@@ -16,36 +48,56 @@ const SignUp = () => {
 
         <div className={styles.formField}>
           <label htmlFor="username">Username</label>
-          <Input id="username" placeholder="Username" type="text" />
+          <Input
+            name="username"
+            id="username"
+            placeholder="Username"
+            type="text"
+            onChange={handleChange}
+          />
         </div>
 
         <div className={styles.formField}>
           <label htmlFor="password">Password</label>
-          <Input id="password" placeholder="Password" type="password" />
-        </div>
-
-        <div className={styles.formField}>
-          <label htmlFor="confirm-password">Confirm Password</label>
           <Input
-            id="confirm-password"
-            placeholder="Confirm Password"
+            name="password"
+            id="password"
+            placeholder="Password"
             type="password"
+            onChange={handleChange}
           />
         </div>
 
-        <p className={styles.error}>Warning here</p>
+        <div className={styles.formField}>
+          <label htmlFor="passwordConfirmation">Confirm Password</label>
+          <Input
+            name="passwordConfirmation"
+            id="passwordConfirmation"
+            placeholder="Confirm Password"
+            type="password"
+            onChange={handleChange}
+          />
+        </div>
 
-        <Button accent type="submit" className={styles.submitBtn}>
+        {formError && <p className={styles.error}>{formError}</p>}
+
+        <Button
+          accent
+          type="submit"
+          className={styles.submitBtn}
+          disabled={buttonDisabled}
+          loading={loading}
+        >
           Sign Up
         </Button>
-      </form>
 
-      <p className={styles.authSwitch}>
-        <span className={styles.text}>Already have an account?</span>{' '}
-        <Link to="/auth/sign-in" className={styles.linkText}>
-          Sign In
-        </Link>
-      </p>
+        <p className={styles.authSwitch}>
+          <span className={styles.text}>Already have an account?</span>{' '}
+          <Link to="/auth/sign-in" className={styles.linkText}>
+            Sign In
+          </Link>
+        </p>
+      </form>
     </section>
   );
 };
