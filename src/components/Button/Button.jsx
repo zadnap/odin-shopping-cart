@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Button.module.scss';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 function Button({
   type = 'button',
@@ -8,6 +10,7 @@ function Button({
   outline,
   active,
   disabled,
+  loading,
   onClick,
   children,
   className,
@@ -25,11 +28,18 @@ function Button({
         ${active ? styles.active : ' '}
         ${className}
       `}
-      disabled={disabled}
+      disabled={disabled || loading}
       onClick={onClick}
       {...props}
     >
-      {children}
+      {loading ? (
+        <span className={styles.loading} aria-label="Loading">
+          <FontAwesomeIcon icon={faSpinner} />
+          <span>Processing...</span>
+        </span>
+      ) : (
+        children
+      )}
     </button>
   );
 }

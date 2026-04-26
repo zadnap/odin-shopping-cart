@@ -1,4 +1,5 @@
 @use '@/styles/variables.scss' as *;
+@use '@/styles/keyframes.scss' as *;
 
 .button {
   display: flex;
@@ -16,6 +17,16 @@
     transform ease 0.2s,
     color ease 0.2s,
     border ease 0.2s;
+
+  .loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      animation: rotate 1s ease-out infinite;
+    }
+  }
 
   &.accent {
     background-color: $accent-color;
