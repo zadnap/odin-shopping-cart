@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import logo from '@/assets/logo.png';
@@ -7,6 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const { signUp, loading, error } = useAuth();
   const [form, setForm] = useState({
     username: '',
@@ -34,7 +36,13 @@ const SignUp = () => {
 
     if (!isPasswordMatch) return;
 
-    await signUp(form);
+    const res = await signUp(form);
+
+    if (res) {
+      navigate('/auth/sign-in', {
+        state: { message: 'Account created successfully, you can sign in now' },
+      });
+    }
   };
 
   return (
