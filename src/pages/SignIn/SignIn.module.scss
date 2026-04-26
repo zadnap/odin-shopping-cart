@@ -59,17 +59,18 @@
       font-weight: 600;
       font-size: 1.6rem;
     }
-  }
 
-  .authSwitch {
-    text-align: center;
-    font-size: 1.4rem;
+    .authSwitch {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-top: 15px;
 
-    a {
-      color: $accent-color;
+      a {
+        color: $accent-color;
 
-      &:hover {
-        text-decoration: underline;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

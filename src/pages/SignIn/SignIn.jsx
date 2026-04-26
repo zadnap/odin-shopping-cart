@@ -3,11 +3,33 @@ import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import logo from '@/assets/logo.png';
 import styles from './SignIn.module.scss';
+import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
 
 const SignIn = () => {
+  const { signIn, loading, error } = useAuth();
+  const [form, setForm] = useState({
+    username: '',
+    password: '',
+  });
+  const buttonDisabled = !form.username || !form.password || loading;
+
+  const handleChange = ({ target: { name, value } }) => {
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await signIn(form);
+  };
+
   return (
     <section className={styles.signIn}>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <p className={styles.brandName}>
           CineMatch
           <img className={styles.appLogo} src={logo} alt="" />
@@ -16,27 +38,44 @@ const SignIn = () => {
 
         <div className={styles.formField}>
           <label htmlFor="username">Username</label>
-          <Input id="username" placeholder="Username" type="text" />
+          <Input
+            name="username"
+            id="username"
+            placeholder="Username"
+            type="text"
+            onChange={handleChange}
+          />
         </div>
 
         <div className={styles.formField}>
           <label htmlFor="password">Password</label>
-          <Input id="password" placeholder="Password" type="password" />
+          <Input
+            name="password"
+            id="password"
+            placeholder="Password"
+            type="password"
+            onChange={handleChange}
+          />
         </div>
 
-        <p className={styles.error}>Warning here</p>
+        {error && <p className={styles.error}>{error}</p>}
 
-        <Button accent type="submit" className={styles.submitBtn}>
+        <Button
+          accent
+          type="submit"
+          className={styles.submitBtn}
+          disabled={buttonDisabled}
+          loading={loading}
+        >
           Sign In
         </Button>
+        <p className={styles.authSwitch}>
+          <span className={styles.text}>Don't have an account?</span>{' '}
+          <Link to="/auth/sign-up" className={styles.linkText}>
+            Sign Up
+          </Link>
+        </p>
       </form>
-
-      <p className={styles.authSwitch}>
-        <span className={styles.text}>Don't have an account?</span>{' '}
-        <Link to="/auth/sign-up" className={styles.linkText}>
-          Sign Up
-        </Link>
-      </p>
     </section>
   );
 };
