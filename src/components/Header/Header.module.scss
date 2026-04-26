@@ -55,7 +55,6 @@
       font-size: 1.4rem;
       color: $text-color;
       padding: 7px 12px;
-      background-color: $subbackground-color;
       border-radius: 5px;
       transition:
         transform ease 0.2s,
@@ -87,14 +86,25 @@
       padding: 5px 12px;
       background-color: $subbackground-color;
       border-radius: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
     }
   }
 }
 
 @media (max-width: $tablet-max) {
-  .header .buttonGroup {
-    .menu {
-      display: flex;
+  .header {
+    gap: calc(var(--gap) / 2);
+    .buttonGroup {
+      .menu {
+        display: flex;
+      }
+
+      .authBtn,
+      .username {
+        display: none;
+      }
     }
   }
 }

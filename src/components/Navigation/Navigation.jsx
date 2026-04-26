@@ -4,6 +4,9 @@ import {
   faFilm,
   faFire,
   faHeart,
+  faRightToBracket,
+  faSignOut,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import NavItem from '../NavItem/NavItem';
 import styles from './Navigation.module.scss';
@@ -12,11 +15,13 @@ import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import Button from '../Button/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [trailerPreviews, setTrailerPreviews] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -131,6 +136,36 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
         onClick={isOnPc ? undefined : () => setIsOpenNav(false)}
       >
         <nav className={styles.navigation}>
+          {!isOnPc && (
+            <div className={styles.itemSet}>
+              {user ? (
+                <li className={styles.userAction}>
+                  <div className={styles.username}>@{user.username}</div>
+                  <Button
+                    outline
+                    onClick={signOut}
+                    className={styles.signOutBtn}
+                    aria-label="Sign out"
+                  >
+                    <FontAwesomeIcon icon={faSignOut} />
+                  </Button>
+                </li>
+              ) : (
+                <>
+                  <li>
+                    <NavItem icon={faRightToBracket} to="/auth/sign-in">
+                      Sign In
+                    </NavItem>
+                  </li>
+                  <li>
+                    <NavItem icon={faUserPlus} to="auth/sign-up">
+                      Sign Up
+                    </NavItem>
+                  </li>
+                </>
+              )}
+            </div>
+          )}
           <div className={styles.itemSet}>
             {filteredItems.map((item) => (
               <li key={item.to}>

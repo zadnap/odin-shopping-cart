@@ -15,6 +15,26 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 
+  .userAction {
+    display: flex;
+    gap: 5px;
+    padding: 0 10px;
+
+    .username,
+    .signOutBtn {
+      text-align: center;
+    }
+
+    .username {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: $subbackground-color;
+      border-radius: 5px;
+      padding: 5px;
+      flex: 1;
+    }
+  }
+
   .trailerList {
     display: flex;
     flex-direction: column;
