@@ -40,7 +40,6 @@
 
   .buttonGroup {
     display: flex;
-    align-items: center;
     gap: 5px;
     flex: 0 0 auto;
     min-width: 0;
@@ -51,6 +50,8 @@
     }
 
     .authBtn {
+      display: flex;
+      align-items: center;
       font-size: 1.4rem;
       color: $text-color;
       padding: 7px 12px;
@@ -81,6 +82,8 @@
     }
 
     .username {
+      display: flex;
+      align-items: center;
       padding: 5px 12px;
       background-color: $subbackground-color;
       border-radius: 5px;
