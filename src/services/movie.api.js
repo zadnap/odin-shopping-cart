@@ -10,3 +10,14 @@ export async function getUpcomingMovies(page) {
 
   return data;
 }
+
+export async function getTrendingMovies(page) {
+  const response = await fetch(`${API_URL}/movies/trending?page=${page}`);
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error || 'Failed to fetch');
+  }
+
+  return data;
+}
