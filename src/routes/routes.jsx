@@ -3,7 +3,6 @@ import Home from '../pages/Home/Home';
 import Movie from '../pages/Movie/Movie';
 import Trending from '../pages/Trending/Trending';
 import Upcoming from '../pages/Upcoming/Upcoming';
-import Trailers from '../pages/Trailers/Trailers';
 import Favourites from '../pages/Favourites/Favourites';
 import Search from '../pages/Search/Search';
 import Error from '../pages/Error/Error';
@@ -27,7 +26,6 @@ const routes = [
         children: [
           { index: true, element: <Home /> },
           { path: 'movie/:id', element: <Movie /> },
-          { path: 'trailers', element: <Trailers /> },
           { path: 'upcoming', element: <Upcoming /> },
           { path: 'trending', element: <Trending /> },
           {

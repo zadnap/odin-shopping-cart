@@ -1,7 +1,6 @@
 import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 import {
   faCalendar,
-  faFilm,
   faFire,
   faHeart,
   faRightToBracket,
@@ -194,9 +193,7 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
             ))}
           </div>
           <div className={styles.itemSet}>
-            <NavItem icon={faFilm} to="/trailers">
-              Watching Trailers
-            </NavItem>
+            <h3 className={styles.watchingTrailers}>Watching Trailers</h3>
             <ul
               className={styles.trailerList}
               onClick={(e) => e.stopPropagation()}
