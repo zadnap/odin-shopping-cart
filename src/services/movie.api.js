@@ -43,3 +43,25 @@ export async function getMovieDetail(id) {
 
   return data;
 }
+
+export async function getAllGenres() {
+  const response = await fetch(`${API_URL}/movies/genres`);
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error || 'Failed to fetch');
+  }
+
+  return data;
+}
+
+export async function getMovieByGenre(id, page) {
+  const response = await fetch(`${API_URL}/movies/genres/${id}?page=${page}`);
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error || 'Failed to fetch');
+  }
+
+  return data;
+}
