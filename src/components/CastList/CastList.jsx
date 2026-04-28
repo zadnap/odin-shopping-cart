@@ -1,4 +1,5 @@
 import styles from './CastList.module.scss';
+import fallbackActor from '@/assets/fallback-actor.jpg';
 
 function CastList({ casts }) {
   return (
@@ -10,7 +11,7 @@ function CastList({ casts }) {
             <li key={cast.id} className={styles.item}>
               <img
                 className={styles.profilePicture}
-                src={cast.profilePicture}
+                src={cast.profilePicture ?? fallbackActor}
                 alt={`${cast.name}'s profile picture`}
               />
               <div className={styles.info}>

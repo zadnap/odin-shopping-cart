@@ -32,3 +32,14 @@ export async function getPreviewTrailers(limit) {
 
   return data;
 }
+
+export async function getMovieDetail(id) {
+  const response = await fetch(`${API_URL}/movies/detail/${id}`);
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error || 'Failed to fetch');
+  }
+
+  return data;
+}

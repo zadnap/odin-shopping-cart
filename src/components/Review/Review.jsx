@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '@/components/Button/Button';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
+import fallbackAvatar from '@/assets/fallback-avatar.png';
 
 function Review({ numberOfReview, currentReview, onNext, onPrev }) {
   return (
@@ -37,7 +38,7 @@ function Review({ numberOfReview, currentReview, onNext, onPrev }) {
           <div className={styles.info}>
             <img
               className={styles.profileImage}
-              src={currentReview.profileImage}
+              src={currentReview.profileImage ?? fallbackAvatar}
               alt={`${currentReview.author}'s profile image`}
             />
             <div className={styles.authorInfo}>
