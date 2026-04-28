@@ -5,7 +5,7 @@ export async function getUpcomingMovies(page) {
   const data = await response.json();
 
   if (!response.ok || !data.success) {
-    throw new Error(data.error || 'Failed to fetch');
+    throw new Error(data?.error?.message || 'Failed to fetch');
   }
 
   return data;
@@ -16,7 +16,7 @@ export async function getTrendingMovies(page) {
   const data = await response.json();
 
   if (!response.ok || !data.success) {
-    throw new Error(data.error || 'Failed to fetch');
+    throw new Error(data?.error?.message || 'Failed to fetch');
   }
 
   return data;
@@ -27,7 +27,7 @@ export async function getPreviewTrailers(limit) {
   const data = await response.json();
 
   if (!response.ok || !data.success) {
-    throw new Error(data.error || 'Failed to fetch');
+    throw new Error(data?.error?.message || 'Failed to fetch');
   }
 
   return data;
@@ -38,7 +38,7 @@ export async function getMovieDetail(id) {
   const data = await response.json();
 
   if (!response.ok || !data.success) {
-    throw new Error(data.error || 'Failed to fetch');
+    throw new Error(data?.error?.message || 'Failed to fetch');
   }
 
   return data;
@@ -49,7 +49,7 @@ export async function getAllGenres() {
   const data = await response.json();
 
   if (!response.ok || !data.success) {
-    throw new Error(data.error || 'Failed to fetch');
+    throw new Error(data?.error?.message || 'Failed to fetch');
   }
 
   return data;
@@ -60,7 +60,7 @@ export async function getMovieByGenre(id, page) {
   const data = await response.json();
 
   if (!response.ok || !data.success) {
-    throw new Error(data.error || 'Failed to fetch');
+    throw new Error(data?.error?.message || 'Failed to fetch');
   }
 
   return data;
@@ -71,7 +71,20 @@ export async function getFeaturedMovie() {
   const data = await response.json();
 
   if (!response.ok || !data.success) {
-    throw new Error(data.error || 'Failed to fetch');
+    throw new Error(data?.error?.message || 'Failed to fetch');
+  }
+
+  return data;
+}
+
+export async function searchMovie(query, page) {
+  const response = await fetch(
+    `${API_URL}/movies/search?query=${encodeURIComponent(query)}&page=${page}`
+  );
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data?.error?.message || 'Failed to fetch');
   }
 
   return data;

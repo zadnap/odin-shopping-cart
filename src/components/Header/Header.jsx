@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,8 +15,10 @@ import Popup from '../Popup/Popup';
 import usePopup from '../../hooks/usePopup';
 
 function Header({ isOpenNav, setIsOpenNav }) {
+  const [searchParams] = useSearchParams();
+  const prevQuery = searchParams.get('query');
   const { user, signOut } = useAuth();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(prevQuery);
   const navigate = useNavigate();
   const { showPopup, hidePopup } = usePopup();
 
