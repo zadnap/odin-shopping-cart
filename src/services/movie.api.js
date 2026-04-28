@@ -65,3 +65,14 @@ export async function getMovieByGenre(id, page) {
 
   return data;
 }
+
+export async function getFeaturedMovie() {
+  const response = await fetch(`${API_URL}/movies/featured`);
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error || 'Failed to fetch');
+  }
+
+  return data;
+}
