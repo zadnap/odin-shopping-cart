@@ -6,8 +6,6 @@ import MoviePagination from '@/components/MoviePagination/MoviePagination';
 import useTrendingMovies from '../../hooks/useTrendingMovies';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-
 function Trending() {
   const [page, setPage] = useState(1);
   const { movies, totalPages, loading, error } = useTrendingMovies(page);

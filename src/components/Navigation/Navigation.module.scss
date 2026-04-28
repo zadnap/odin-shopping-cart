@@ -44,10 +44,8 @@
   .trailerList {
     display: flex;
     flex-direction: column;
-
-    .trailerItem {
-      margin: 10px 15px;
-    }
+    padding: 10px 15px;
+    gap: 10px;
   }
 
   &::-webkit-scrollbar {
