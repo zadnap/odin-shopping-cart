@@ -1,4 +1,5 @@
 @use '@/styles/variables.scss' as *;
+@use '@/styles/keyframes.scss' as *;
 
 .overlay {
   position: fixed;
@@ -11,6 +12,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: fadeIn ease 0.2s;
 }
 
 .popup {
@@ -24,6 +26,7 @@
   width: 400px;
   max-width: 90%;
   color: $text-color;
+  animation: zoomOut ease 0.2s;
 }
 
 .title {
