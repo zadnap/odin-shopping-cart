@@ -4,9 +4,11 @@ import Button from '@/components/Button/Button';
 import Modal from '@/components/Modal/Modal';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer';
 import { faPlay, faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import fallbackPoster from '@/assets/fallback-poster.jpg';
 import fallbackBackdrop from '@/assets/fallback-backdrop.jpg';
+import useAuth from '../../hooks/useAuth';
+import useFavourite from '../../hooks/useFavourite';
 
 function MovieDetail({ movie }) {
   const {
@@ -26,21 +28,9 @@ function MovieDetail({ movie }) {
     trailerKey,
   } = movie;
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [favourites, setFavourites] = useState(
-    JSON.parse(localStorage.getItem('favourites')) || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem('favourites', JSON.stringify(favourites));
-  }, [favourites]);
-
-  const handleFavourite = () => {
-    if (!favourites.includes(id)) {
-      setFavourites([...favourites, id]);
-    } else {
-      setFavourites(favourites.filter((fav) => fav !== id));
-    }
-  };
+  const { user } = useAuth();
+  const { isFavourite, loading, initialLoading, toggleFavourite } =
+    useFavourite(id);
 
   return (
     <article
@@ -118,16 +108,19 @@ function MovieDetail({ movie }) {
           </li>
         </ul>
         <div className={styles.buttonGroup}>
-          <Button
-            onClick={handleFavourite}
-            className={`${styles.handleFavouritebtn} ${favourites.find((fav) => fav === id) ? styles.liked : ''}`}
-            aria-label={
-              favourites.find((fav) => fav === id) ? 'Unlike' : 'Like'
-            }
-          >
-            <FontAwesomeIcon icon={faHeart} />{' '}
-            {favourites.find((fav) => fav === id) ? 'Liked' : 'Like'}
-          </Button>
+          {user && (
+            <Button
+              onClick={toggleFavourite}
+              disabled={initialLoading || loading}
+              loading={initialLoading || loading}
+              loadingText={isFavourite ? 'Unlike' : 'Like'}
+              aria-label={isFavourite ? 'Unlike' : 'Like'}
+              className={`${styles.handleFavouritebtn} ${isFavourite ? styles.liked : ''}`}
+            >
+              <FontAwesomeIcon icon={faHeart} />
+              {isFavourite ? 'Liked' : 'Like'}
+            </Button>
+          )}
           <Button
             onClick={() => setIsOpenModal(true)}
             aria-label="Watch movie trailer"
