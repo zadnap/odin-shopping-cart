@@ -10,11 +10,12 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    background-color: $subbackground-color;
+    background-color: $background-color;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 1.5rem;
     color: $text-color;
+    border: 1px solid $subbackground-color;
 
     .pageInput {
       width: 4ch;
@@ -23,8 +24,10 @@
       border: none;
       outline: none;
       color: inherit;
-      border: 1px solid $text-color;
-      border-radius: 5px;
+      border-radius: 3px;
+      border: 1px solid $subbackground-color;
+      transition: background-color ease 0.2s;
+      background-color: $subbackground-color;
 
       &::-webkit-inner-spin-button,
       &::-webkit-outer-spin-button {

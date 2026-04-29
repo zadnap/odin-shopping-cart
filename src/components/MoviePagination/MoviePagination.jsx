@@ -31,6 +31,7 @@ function MoviePagination({ page, totalPages, onPrev, onNext, onJump }) {
         aria-label="View previous page"
         onClick={onPrev}
         disabled={page === 1}
+        outline
       >
         <FontAwesomeIcon icon={faChevronLeft} />
       </Button>
@@ -44,7 +45,7 @@ function MoviePagination({ page, totalPages, onPrev, onNext, onJump }) {
           onChange={(e) => setInputValue(e.target.value)}
           className={styles.pageInput}
         />
-        <span className={styles.pageTotal}> / {totalPages}</span>
+        <span className={styles.pageTotal}> of {totalPages}</span>
       </form>
 
       <Button
@@ -52,6 +53,7 @@ function MoviePagination({ page, totalPages, onPrev, onNext, onJump }) {
         aria-label="View next page"
         onClick={onNext}
         disabled={page === totalPages}
+        outline
       >
         <FontAwesomeIcon icon={faChevronRight} />
       </Button>
