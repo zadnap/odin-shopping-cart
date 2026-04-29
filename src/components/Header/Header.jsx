@@ -18,7 +18,7 @@ function Header({ isOpenNav, setIsOpenNav }) {
   const [searchParams] = useSearchParams();
   const prevQuery = searchParams.get('query');
   const { user, signOut } = useAuth();
-  const [query, setQuery] = useState(prevQuery);
+  const [query, setQuery] = useState(prevQuery || '');
   const navigate = useNavigate();
   const { showPopup, hidePopup } = usePopup();
 

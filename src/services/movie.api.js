@@ -1,7 +1,11 @@
+import getAuthHeaders from '../utils/getAuthHeaders';
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function getUpcomingMovies(page) {
-  const response = await fetch(`${API_URL}/movies/upcoming?page=${page}`);
+  const response = await fetch(`${API_URL}/movies/upcoming?page=${page}`, {
+    headers: getAuthHeaders(),
+  });
   const data = await response.json();
 
   if (!response.ok || !data.success) {
@@ -12,7 +16,9 @@ export async function getUpcomingMovies(page) {
 }
 
 export async function getTrendingMovies(page) {
-  const response = await fetch(`${API_URL}/movies/trending?page=${page}`);
+  const response = await fetch(`${API_URL}/movies/trending?page=${page}`, {
+    headers: getAuthHeaders(),
+  });
   const data = await response.json();
 
   if (!response.ok || !data.success) {
@@ -56,7 +62,9 @@ export async function getAllGenres() {
 }
 
 export async function getMovieByGenre(id, page) {
-  const response = await fetch(`${API_URL}/movies/genres/${id}?page=${page}`);
+  const response = await fetch(`${API_URL}/movies/genres/${id}?page=${page}`, {
+    headers: getAuthHeaders(),
+  });
   const data = await response.json();
 
   if (!response.ok || !data.success) {
