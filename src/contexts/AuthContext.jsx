@@ -15,6 +15,14 @@ const AuthProvider = ({ children }) => {
 
     try {
       const decoded = jwtDecode(token);
+      const isExpired = decoded.exp * 1000 < Date.now();
+
+      if (isExpired) {
+        localStorage.removeItem('accessToken');
+        setUser(null);
+        return;
+      }
+
       setUser({
         id: decoded.sub,
         username: decoded.username,
