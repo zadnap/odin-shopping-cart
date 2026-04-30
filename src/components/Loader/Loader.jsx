@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Loader.module.scss';
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
 
-function Loader() {
+function Loader({ className = '' }) {
   return (
     <div
-      className={styles.loader}
+      className={`${styles.loader} ${className}`}
       role="status"
       aria-live="polite"
       aria-busy="true"
