@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Onboarding.module.scss';
 import Button from '../../components/Button/Button';
 import StepGenres from './StepGenres';
 import StepMovies from './StepMovies';
 import StepFinish from './StepFinish';
+
+const MIN_GENRES = 3;
 
 const Onboarding = () => {
   const [step, setStep] = useState(1);
@@ -30,6 +32,10 @@ const Onboarding = () => {
     console.log('Sending data to Flask server:', userData);
   };
 
+  useEffect(() => {
+    setSelectedMovies([]);
+  }, [selectedGenres]);
+
   return (
     <main className={styles.onboarding}>
       <div className={styles.container}>
@@ -48,9 +54,10 @@ const Onboarding = () => {
                 ? 'Pick movies you have seen'
                 : 'Excellent!'}
           </h1>
-          {step === 1 && (
+          {step === 1 && selectedGenres.length < MIN_GENRES && (
             <p className={styles.instruction}>
-              Please select at least 3 to continue
+              Please select at least {MIN_GENRES - selectedGenres.length} more
+              to continue
             </p>
           )}
         </header>
@@ -88,7 +95,7 @@ const Onboarding = () => {
           )}
           {step < 3 ? (
             <Button
-              disabled={step === 1 && selectedGenres.length < 3}
+              disabled={step === 1 && selectedGenres.length < MIN_GENRES}
               onClick={() => setStep(step + 1)}
               accent
             >
