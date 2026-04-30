@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getMoviesByGenre } from '@/services/movie.api.js';
+import { getMoviesByGenres } from '@/services/movie.api.js';
 
-export default function useMoviesByGenre(genreId, page) {
+export default function useMoviesByGenres(genreIds, page) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(0);
@@ -13,7 +13,7 @@ export default function useMoviesByGenre(genreId, page) {
         setLoading(true);
         setError(null);
 
-        const data = await getMoviesByGenre(genreId, page);
+        const data = await getMoviesByGenres(genreIds, page);
 
         setMovies(data.movies);
         setTotalPages(data.total_pages);
@@ -26,7 +26,7 @@ export default function useMoviesByGenre(genreId, page) {
     };
 
     fetchData();
-  }, [genreId, page]);
+  }, [genreIds, page]);
 
   return { movies, totalPages, loading, error };
 }

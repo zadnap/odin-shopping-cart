@@ -51,7 +51,7 @@ export async function getMovieDetail(id) {
 }
 
 export async function getAllGenres() {
-  const response = await fetch(`${API_URL}/movies/genres`);
+  const response = await fetch(`${API_URL}/movies/all-genres`);
   const data = await response.json();
 
   if (!response.ok || !data.success) {
@@ -61,10 +61,13 @@ export async function getAllGenres() {
   return data;
 }
 
-export async function getMoviesByGenre(id, page) {
-  const response = await fetch(`${API_URL}/movies/genres/${id}?page=${page}`, {
-    headers: getAuthHeaders(),
-  });
+export async function getMoviesByGenres(ids, page) {
+  const response = await fetch(
+    `${API_URL}/movies/by-genres?ids=${ids.join()}&page=${page}`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
   const data = await response.json();
 
   if (!response.ok || !data.success) {

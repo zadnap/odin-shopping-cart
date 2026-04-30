@@ -6,10 +6,10 @@ import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import MoviePagination from '../MoviePagination/MoviePagination';
 import useGenres from '../../hooks/useGenres';
-import useMoviesByGenre from '../../hooks/useMoviesByGenre';
+import useMoviesByGenres from '../../hooks/useMoviesByGenres';
 
 function MovieList() {
-  const [genreId, setGenreId] = useState(28);
+  const [genreIds, setGenreIds] = useState([28]);
   const [page, setPage] = useState(1);
   const { genres, loading: genreLoading, error: genreError } = useGenres();
   const {
@@ -17,19 +17,19 @@ function MovieList() {
     totalPages,
     loading: movieLoading,
     error: movieError,
-  } = useMoviesByGenre(genreId, page);
+  } = useMoviesByGenres(genreIds, page);
 
   useEffect(() => {
     setPage(1);
-  }, [genreId]);
+  }, [genreIds]);
 
   return (
     <section className={styles.movieList}>
       {genreError && <ErrorMessage message={genreError} />}
       {!genreLoading && !genreError && (
         <GenreFilter
-          currentId={genreId}
-          onChangeGenreId={setGenreId}
+          currentId={genreIds[0]}
+          onChangeGenreId={setGenreIds}
           genres={genres}
         />
       )}
