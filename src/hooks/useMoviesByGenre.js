@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getMovieByGenre } from '@/services/movie.api.js';
+import { getMoviesByGenre } from '@/services/movie.api.js';
 
-export default function useMovieByGenre(genreId, page) {
+export default function useMoviesByGenre(genreId, page) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(0);
@@ -13,7 +13,7 @@ export default function useMovieByGenre(genreId, page) {
         setLoading(true);
         setError(null);
 
-        const data = await getMovieByGenre(genreId, page);
+        const data = await getMoviesByGenre(genreId, page);
 
         setMovies(data.movies);
         setTotalPages(data.total_pages);

@@ -61,7 +61,7 @@ export async function getAllGenres() {
   return data;
 }
 
-export async function getMovieByGenre(id, page) {
+export async function getMoviesByGenre(id, page) {
   const response = await fetch(`${API_URL}/movies/genres/${id}?page=${page}`, {
     headers: getAuthHeaders(),
   });

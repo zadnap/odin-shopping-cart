@@ -6,7 +6,7 @@ import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import MoviePagination from '../MoviePagination/MoviePagination';
 import useGenres from '../../hooks/useGenres';
-import useMovieByGenre from '../../hooks/useMovieByGenre';
+import useMoviesByGenre from '../../hooks/useMoviesByGenre';
 
 function MovieList() {
   const [genreId, setGenreId] = useState(28);
@@ -17,7 +17,7 @@ function MovieList() {
     totalPages,
     loading: movieLoading,
     error: movieError,
-  } = useMovieByGenre(genreId, page);
+  } = useMoviesByGenre(genreId, page);
 
   useEffect(() => {
     setPage(1);
