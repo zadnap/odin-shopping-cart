@@ -24,7 +24,7 @@ const StepMovies = ({ selectedGenres, selectedMovies, onToggle }) => {
             onClick={() => onToggle(movie.id)}
           >
             <img src={movie.posterSrc} alt={movie.title} />
-            <span>{movie.title}</span>
+            <span className={styles.srOnly}>{movie.title}</span>
           </div>
         ))}
     </div>
