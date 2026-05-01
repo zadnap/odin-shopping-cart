@@ -1,36 +1,35 @@
 import { createContext, useEffect, useState } from 'react';
 import { signInUser, signUpUser } from '@/services/auth.api';
-import { jwtDecode } from 'jwt-decode';
+import { getMe } from '@/services/user.api';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) return;
+    const initAuth = async () => {
+      const token = localStorage.getItem('accessToken');
 
-    try {
-      const decoded = jwtDecode(token);
-      const isExpired = decoded.exp * 1000 < Date.now();
-
-      if (isExpired) {
-        localStorage.removeItem('accessToken');
-        setUser(null);
+      if (!token) {
+        setLoading(false);
         return;
       }
 
-      setUser({
-        id: decoded.sub,
-        username: decoded.username,
-      });
-    } catch {
-      localStorage.removeItem('accessToken');
-      setUser(null);
-    }
+      try {
+        const me = await getMe();
+        setUser(me.data);
+      } catch {
+        localStorage.removeItem('accessToken');
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initAuth();
   }, []);
 
   const signIn = async (data) => {
@@ -43,11 +42,8 @@ const AuthProvider = ({ children }) => {
       if (res?.access_token) {
         localStorage.setItem('accessToken', res.access_token);
 
-        if (res.user) {
-          setUser(res.user);
-        } else {
-          setUser({});
-        }
+        const me = await getMe();
+        setUser(me.data);
       }
 
       return res;
@@ -79,14 +75,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        error,
-        signIn,
-        signUp,
-        signOut,
-      }}
+      value={{ user, loading, error, signIn, signUp, signOut }}
     >
       {children}
     </AuthContext.Provider>

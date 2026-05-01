@@ -79,3 +79,16 @@ export async function onboard(genres, movies) {
 
   return data;
 }
+
+export async function getMe() {
+  const response = await fetch(`${API_URL}/user/me`, {
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+  });
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data?.error?.message || 'Failed to get user data');
+  }
+
+  return data;
+}
