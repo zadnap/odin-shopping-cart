@@ -4,6 +4,8 @@ import Button from '../../components/Button/Button';
 import StepGenres from './StepGenres';
 import StepMovies from './StepMovies';
 import StepFinish from './StepFinish';
+import useOnboarding from '@/hooks/useOnboading';
+import { useNavigate } from 'react-router-dom';
 
 const MIN_GENRES = 3;
 
@@ -11,6 +13,12 @@ const Onboarding = () => {
   const [step, setStep] = useState(1);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedMovies, setSelectedMovies] = useState([]);
+  const {
+    submitOnboarding,
+    loading: finishLoading,
+    error: finishError,
+  } = useOnboarding();
+  const navigate = useNavigate();
 
   const toggleGenre = (id) => {
     setSelectedGenres((prev) =>
@@ -24,12 +32,10 @@ const Onboarding = () => {
     );
   };
 
-  const handleFinish = () => {
-    const userData = {
-      genres: selectedGenres,
-      movies: selectedMovies,
-    };
-    console.log('Sending data to Flask server:', userData);
+  const handleFinish = async () => {
+    const res = await submitOnboarding(selectedGenres, selectedMovies);
+    if (!res?.success) return;
+    navigate('/');
   };
 
   useEffect(() => {
@@ -78,6 +84,7 @@ const Onboarding = () => {
           )}
           {step === 3 && (
             <StepFinish
+              error={finishError}
               selectedGenres={selectedGenres}
               selectedMovies={selectedMovies}
             />
@@ -102,7 +109,13 @@ const Onboarding = () => {
               Next
             </Button>
           ) : (
-            <Button onClick={handleFinish} accent>
+            <Button
+              onClick={handleFinish}
+              accent
+              disabled={finishLoading}
+              loading={finishLoading}
+              loadingText="Processing"
+            >
               Start Exploring
             </Button>
           )}

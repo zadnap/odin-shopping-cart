@@ -61,3 +61,21 @@ export async function checkFavourite(movieId) {
 
   return data;
 }
+
+export async function onboard(genres, movies) {
+  const response = await fetch(`${API_URL}/user/onboarding`, {
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+    method: 'POST',
+    body: JSON.stringify({
+      genres,
+      movies,
+    }),
+  });
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data?.error?.message || 'Failed to onboard');
+  }
+
+  return data;
+}
