@@ -12,8 +12,9 @@ import MainLayout from '../layouts/MainLayout/MainLayout';
 import AuthLayout from '../layouts/AuthLayout/AuthLayout';
 import { Navigate } from 'react-router-dom';
 import Onboarding from '../pages/Onboarding/Onboarding';
-import GuestRoute from './GuestRoute';
-import ProtectedRoute from './ProtectedRoute';
+import OnboardingRedirectGuard from './OnboardingRedirectGuard';
+import GuestGuard from './GuestGuard';
+import OnboardingGuard from './OnboardingGuard';
 
 const routes = [
   {
@@ -22,29 +23,26 @@ const routes = [
     errorElement: <Error />,
     children: [
       {
-        element: <MainLayout />,
+        element: (
+          <OnboardingRedirectGuard>
+            <MainLayout />
+          </OnboardingRedirectGuard>
+        ),
         children: [
           { index: true, element: <Home /> },
           { path: 'movie/:id', element: <Movie /> },
           { path: 'upcoming', element: <Upcoming /> },
           { path: 'trending', element: <Trending /> },
-          {
-            path: 'favourites',
-            element: (
-              <ProtectedRoute>
-                <Favourites />
-              </ProtectedRoute>
-            ),
-          },
+          { path: 'favourites', element: <Favourites /> },
           { path: 'search', element: <Search /> },
         ],
       },
       {
         path: 'auth',
         element: (
-          <GuestRoute>
+          <GuestGuard>
             <AuthLayout />
-          </GuestRoute>
+          </GuestGuard>
         ),
         children: [
           { index: true, element: <Navigate to="sign-in" replace /> },
@@ -54,7 +52,11 @@ const routes = [
       },
       {
         path: 'onboarding',
-        element: <Onboarding />,
+        element: (
+          <OnboardingGuard>
+            <Onboarding />
+          </OnboardingGuard>
+        ),
       },
     ],
   },

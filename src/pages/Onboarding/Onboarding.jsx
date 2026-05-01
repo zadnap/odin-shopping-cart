@@ -6,10 +6,12 @@ import StepMovies from './StepMovies';
 import StepFinish from './StepFinish';
 import useOnboarding from '@/hooks/useOnboading';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const MIN_GENRES = 3;
 
 const Onboarding = () => {
+  const { refreshUser } = useAuth();
   const [step, setStep] = useState(1);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedMovies, setSelectedMovies] = useState([]);
@@ -35,6 +37,9 @@ const Onboarding = () => {
   const handleFinish = async () => {
     const res = await submitOnboarding(selectedGenres, selectedMovies);
     if (!res?.success) return;
+
+    await refreshUser();
+
     navigate('/');
   };
 

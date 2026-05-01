@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Loader.module.scss';
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
 
-function Loader({ className = '' }) {
+function Loader({ fullScreen, className = '' }) {
   return (
     <div
-      className={`${styles.loader} ${className}`}
+      className={`${styles.loader} ${fullScreen ? styles.fullScreen : ''} ${className}`}
       role="status"
       aria-live="polite"
       aria-busy="true"

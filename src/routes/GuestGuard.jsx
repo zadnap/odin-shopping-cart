@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import useAuth from '@/hooks/useAuth';
 
-const GuestRoute = ({ children }) => {
+const GuestGuard = ({ children }) => {
   const { user } = useAuth();
 
   if (user) {
@@ -11,4 +11,4 @@ const GuestRoute = ({ children }) => {
   return children;
 };
 
-export default GuestRoute;
+export default GuestGuard;

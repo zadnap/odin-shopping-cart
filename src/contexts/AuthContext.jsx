@@ -73,9 +73,14 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const refreshUser = async () => {
+    const me = await getMe();
+    setUser(me.data);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, loading, error, signIn, signUp, signOut }}
+      value={{ user, loading, error, signIn, signUp, signOut, refreshUser }}
     >
       {children}
     </AuthContext.Provider>
