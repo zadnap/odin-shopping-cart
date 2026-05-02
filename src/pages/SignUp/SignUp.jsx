@@ -6,6 +6,7 @@ import logo from '@/assets/logo.png';
 import styles from './SignUp.module.scss';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
+import Divider from '../../components/Divider/Divider';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -99,12 +100,21 @@ const SignUp = () => {
           Sign Up
         </Button>
 
-        <p className={styles.authSwitch}>
-          <span className={styles.text}>Already have an account?</span>{' '}
-          <Link to="/auth/sign-in" className={styles.linkText}>
-            Sign In
-          </Link>
-        </p>
+        <footer>
+          <p className={styles.authSwitch}>
+            <span className={styles.text}>Already have an account?</span>{' '}
+            <Link to="/auth/sign-in" className={styles.linkText}>
+              Sign In
+            </Link>
+          </p>
+          <Divider />
+          <p className={styles.authSwitch}>
+            <span className={styles.text}>Continue as guest?</span>{' '}
+            <Link to="/" className={styles.linkText}>
+              Go to home
+            </Link>
+          </p>
+        </footer>
       </form>
     </section>
   );

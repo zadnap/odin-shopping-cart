@@ -5,6 +5,7 @@ import logo from '@/assets/logo.png';
 import styles from './SignIn.module.scss';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
+import Divider from '../../components/Divider/Divider';
 
 const SignIn = () => {
   const location = useLocation();
@@ -72,12 +73,22 @@ const SignIn = () => {
         >
           Sign In
         </Button>
-        <p className={styles.authSwitch}>
-          <span className={styles.text}>Don't have an account?</span>{' '}
-          <Link to="/auth/sign-up" className={styles.linkText}>
-            Sign Up
-          </Link>
-        </p>
+
+        <footer>
+          <p className={styles.authSwitch}>
+            <span className={styles.text}>Don't have an account?</span>{' '}
+            <Link to="/auth/sign-up" className={styles.linkText}>
+              Sign Up
+            </Link>
+          </p>
+          <Divider />
+          <p className={styles.authSwitch}>
+            <span className={styles.text}>Continue as guest?</span>{' '}
+            <Link to="/" className={styles.linkText}>
+              Go to home
+            </Link>
+          </p>
+        </footer>
       </form>
     </section>
   );
