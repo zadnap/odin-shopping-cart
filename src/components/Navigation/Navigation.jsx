@@ -19,7 +19,7 @@ import Popup from '../Popup/Popup';
 import usePopup from '../../hooks/usePopup';
 import usePreviewTrailers from '../../hooks/usePreviewTrailers';
 
-function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
+function Navigation({ isOnTablet, isOpenNav, setIsOpenNav }) {
   const { user, signOut } = useAuth();
   const { showPopup, hidePopup } = usePopup();
   const { trailers, loading, error } = usePreviewTrailers();
@@ -67,10 +67,10 @@ function Navigation({ isOnPc, isOpenNav, setIsOpenNav }) {
     isOpenNav && (
       <div
         className={styles.navOverlay}
-        onClick={isOnPc ? undefined : () => setIsOpenNav(false)}
+        onClick={isOnTablet ? undefined : () => setIsOpenNav(false)}
       >
         <nav className={styles.navigation}>
-          {!isOnPc && (
+          {!isOnTablet && (
             <div className={styles.itemSet}>
               {user ? (
                 <li className={styles.userAction}>

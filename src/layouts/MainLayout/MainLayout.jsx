@@ -6,15 +6,15 @@ import Header from '@/components/Header/Header';
 import Navigation from '@/components/Navigation/Navigation';
 
 const MainLayout = () => {
-  const isOnPc = window.innerWidth >= 1024;
-  const [isOpenNav, setIsOpenNav] = useState(isOnPc);
+  const isOnTablet = window.innerWidth >= 768;
+  const [isOpenNav, setIsOpenNav] = useState(isOnTablet);
 
   return (
     <section className={styles.mainLayout}>
       <Header isOpenNav={isOpenNav} setIsOpenNav={setIsOpenNav} />
       <div className={styles.body}>
         <Navigation
-          isOnPc={isOnPc}
+          isOnTablet={isOnTablet}
           isOpenNav={isOpenNav}
           setIsOpenNav={setIsOpenNav}
         />
