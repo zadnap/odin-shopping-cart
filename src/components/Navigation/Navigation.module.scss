@@ -35,13 +35,17 @@
     }
   }
 
+  .watchingTrailers {
+    font-size: 1.6rem;
+    padding: 5px 15px;
+    font-weight: 600;
+  }
+
   .trailerList {
     display: flex;
     flex-direction: column;
-
-    .trailerItem {
-      margin: 10px 15px;
-    }
+    padding: 10px 15px;
+    gap: 10px;
   }
 
   &::-webkit-scrollbar {

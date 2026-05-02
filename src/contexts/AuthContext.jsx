@@ -1,28 +1,27 @@
 import { createContext, useEffect, useState } from 'react';
-import { signInUser, signUpUser } from '@/services/auth.api';
-import { jwtDecode } from 'jwt-decode';
+import { signInUser, signUpUser, signOutUser } from '@/services/auth.api';
+import { getMe } from '@/services/user.api';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) return;
+    const initAuth = async () => {
+      try {
+        const me = await getMe({ skipAuthRefresh: true });
+        setUser(me.data);
+      } catch {
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    try {
-      const decoded = jwtDecode(token);
-      setUser({
-        id: decoded.sub,
-        username: decoded.username,
-      });
-    } catch {
-      localStorage.removeItem('accessToken');
-      setUser(null);
-    }
+    initAuth();
   }, []);
 
   const signIn = async (data) => {
@@ -30,19 +29,10 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      const res = await signInUser(data);
+      await signInUser(data);
 
-      if (res?.access_token) {
-        localStorage.setItem('accessToken', res.access_token);
-
-        if (res.user) {
-          setUser(res.user);
-        } else {
-          setUser({});
-        }
-      }
-
-      return res;
+      const me = await getMe();
+      setUser(me.data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -64,21 +54,28 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const signOut = () => {
-    localStorage.removeItem('accessToken');
-    setUser(null);
+  const signOut = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      await signOutUser();
+      setUser(null);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const refreshUser = async () => {
+    const me = await getMe();
+    setUser(me.data);
   };
 
   return (
     <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        error,
-        signIn,
-        signUp,
-        signOut,
-      }}
+      value={{ user, loading, error, signIn, signUp, signOut, refreshUser }}
     >
       {children}
     </AuthContext.Provider>

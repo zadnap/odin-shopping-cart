@@ -10,8 +10,14 @@
   gap: 15px;
   height: 100%;
   padding: 100px;
+  color: $text-color;
   background-color: $subbackground-color;
   border-radius: $border-radius;
+
+  &.fullScreen {
+    width: 100vw;
+    height: 100vh;
+  }
 
   .loadingCircle {
     position: relative;

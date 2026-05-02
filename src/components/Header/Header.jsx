@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,12 +12,15 @@ import {
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import Popup from '../Popup/Popup';
+import usePopup from '../../hooks/usePopup';
 
 function Header({ isOpenNav, setIsOpenNav }) {
+  const [searchParams] = useSearchParams();
+  const prevQuery = searchParams.get('query');
   const { user, signOut } = useAuth();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(prevQuery || '');
   const navigate = useNavigate();
-  const [isShowPopup, setIsShowPopup] = useState(false);
+  const { showPopup, hidePopup } = usePopup();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -27,9 +30,16 @@ function Header({ isOpenNav, setIsOpenNav }) {
     }
   };
 
-  const handleConfirmSignOut = () => {
-    signOut();
-    setIsShowPopup(false);
+  const handleSignOut = () => {
+    showPopup({
+      title: 'Sign Out',
+      content: 'Are you sure to sign out of CineMatch?',
+      onConfirm: () => {
+        signOut();
+        hidePopup();
+      },
+      onCancel: hidePopup,
+    });
   };
 
   return (
@@ -79,7 +89,7 @@ function Header({ isOpenNav, setIsOpenNav }) {
           <>
             <span className={styles.username}>@{user.username}</span>
             <Button
-              onClick={() => setIsShowPopup(true)}
+              onClick={handleSignOut}
               outline
               className={`${styles.authBtn} ${styles.signOutBtn}`}
               aria-label="Sign out"
@@ -89,14 +99,6 @@ function Header({ isOpenNav, setIsOpenNav }) {
           </>
         )}
       </div>
-
-      <Popup
-        isOpen={isShowPopup}
-        title="Sign Out"
-        content="Are you sure to sign out of CineMatch?"
-        onConfirm={handleConfirmSignOut}
-        onCancel={() => setIsShowPopup(false)}
-      />
     </header>
   );
 }

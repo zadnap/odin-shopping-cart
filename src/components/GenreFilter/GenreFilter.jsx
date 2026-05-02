@@ -10,10 +10,10 @@ function GenreFilter({ genres, currentId, onChangeGenreId }) {
   const currentIndex = genres.findIndex((item) => item.id === currentId);
 
   const handleViewPrevGenre = () => {
-    onChangeGenreId(genres[currentIndex - 1].id);
+    onChangeGenreId([genres[currentIndex - 1].id]);
   };
   const handleViewNextGenre = () => {
-    onChangeGenreId(genres[currentIndex + 1].id);
+    onChangeGenreId([genres[currentIndex + 1].id]);
   };
 
   return (
@@ -22,7 +22,7 @@ function GenreFilter({ genres, currentId, onChangeGenreId }) {
         {genres.map((genre) => (
           <li key={genre.id} className={styles.tag}>
             <Button
-              onClick={() => onChangeGenreId(genre.id)}
+              onClick={() => onChangeGenreId([genre.id])}
               active={genre.id === currentId}
               aria-pressed={genre.id === currentId}
             >

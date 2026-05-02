@@ -16,7 +16,18 @@
   transition:
     transform ease 0.2s,
     color ease 0.2s,
-    border ease 0.2s;
+    border ease 0.2s,
+    background-color ease 0.2s;
+
+  .loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      animation: rotate 1s ease-out infinite;
+    }
+  }
 
   .loading {
     display: flex;
@@ -36,7 +47,7 @@
     background-color: transparent;
     border: 1px solid $subbackground-color;
 
-    &:hover {
+    &:not(:disabled):hover {
       background-color: $subbackground-color;
     }
   }

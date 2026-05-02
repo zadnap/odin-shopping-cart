@@ -1,0 +1,34 @@
+import styles from './Onboarding.module.scss';
+import useMoviesByGenres from '@/hooks/useMoviesByGenres';
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
+import Loader from '@/components/Loader/Loader';
+
+const StepMovies = ({ selectedGenres, selectedMovies, onToggle }) => {
+  const {
+    movies,
+    loading: movieLoading,
+    error: movieError,
+  } = useMoviesByGenres(selectedGenres, 1);
+  return (
+    <div className={styles.movieGrid}>
+      {movieLoading && <Loader className={styles.gridFallback} />}
+      {movieError && (
+        <ErrorMessage message={movieError} className={styles.gridFallback} />
+      )}
+      {!movieLoading &&
+        !movieError &&
+        movies.map((movie) => (
+          <div
+            key={movie.id}
+            className={`${styles.movieCard} ${selectedMovies.includes(movie.id) ? styles.selected : ''}`}
+            onClick={() => onToggle(movie.id)}
+          >
+            <img src={movie.posterSrc} alt={movie.title} />
+            <span className={styles.srOnly}>{movie.title}</span>
+          </div>
+        ))}
+    </div>
+  );
+};
+
+export default StepMovies;

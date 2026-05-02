@@ -11,6 +11,7 @@ function Button({
   active,
   disabled,
   loading,
+  loadingText = 'Processing...',
   onClick,
   children,
   className,
@@ -35,7 +36,7 @@ function Button({
       {loading ? (
         <span className={styles.loading} aria-label="Loading">
           <FontAwesomeIcon icon={faSpinner} />
-          <span>Processing...</span>
+          <span>{loadingText}</span>
         </span>
       ) : (
         children
