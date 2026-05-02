@@ -13,13 +13,21 @@ export const signUpUser = ({ username, password, passwordConfirmation }) =>
     }),
   });
 
-export const signInUser = ({ username, password }) =>
-  fetchJSON(`/auth/sign-in`, {
+export const signInUser = async ({ username, password }) => {
+  const data = await fetchJSON(`/auth/sign-in`, {
     method: 'POST',
     body: JSON.stringify({ username, password }),
   });
 
-export const signOutUser = () =>
-  fetchJSON(`/auth/sign-out`, {
-    method: 'POST',
-  });
+  localStorage.setItem('access_token', data.access_token);
+  localStorage.setItem('refresh_token', data.refresh_token);
+
+  return data;
+};
+
+export const signOutUser = () => {
+  localStorage.clear();
+  if (window.location.pathname !== '/auth/sign-in') {
+    window.location.href = '/auth/sign-in';
+  }
+};

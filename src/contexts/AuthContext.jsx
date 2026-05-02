@@ -11,8 +11,16 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initAuth = async () => {
+      const accessToken = localStorage.getItem('access_token');
+      const refreshToken = localStorage.getItem('refresh_token');
+
+      if (!accessToken && !refreshToken) {
+        setLoading(false);
+        return;
+      }
+
       try {
-        const me = await getMe({ skipAuthRefresh: true });
+        const me = await getMe();
         setUser(me.data);
       } catch {
         setUser(null);
@@ -55,17 +63,8 @@ const AuthProvider = ({ children }) => {
   };
 
   const signOut = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      await signOutUser();
-      setUser(null);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    signOutUser();
+    setUser(null);
   };
 
   const refreshUser = async () => {
