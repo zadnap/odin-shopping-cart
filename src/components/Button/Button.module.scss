@@ -29,6 +29,16 @@
     }
   }
 
+  .loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      animation: rotate 1s ease-out infinite;
+    }
+  }
+
   &.accent {
     background-color: $accent-color;
   }
