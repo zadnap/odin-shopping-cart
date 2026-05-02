@@ -1,94 +1,34 @@
-import getAuthHeaders from '../utils/getAuthHeaders';
+import { fetchJSON } from './fetchClient';
 
-const API_URL = import.meta.env.VITE_API_URL;
+export const getFavourites = (page) =>
+  fetchJSON(`/user/favourites?page=${page}`);
 
-export async function getFavourites(page) {
-  const response = await fetch(`${API_URL}/user/favourites?page=${page}`, {
-    headers: getAuthHeaders(),
-  });
-  const data = await response.json();
-
-  if (!response.ok || !data.success) {
-    throw new Error(data?.error?.message || 'Failed to fetch favourites');
-  }
-
-  return data;
-}
-
-export async function addToFavourites(movieId) {
-  const response = await fetch(`${API_URL}/user/favourites`, {
-    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+export const addToFavourites = (movieId) =>
+  fetchJSON(`/user/favourites`, {
     method: 'POST',
     body: JSON.stringify({
       movie_id: movieId,
     }),
   });
-  const data = await response.json();
 
-  if (!response.ok || !data.success) {
-    throw new Error(data?.error?.message || 'Failed to add to favourites');
-  }
-
-  return data;
-}
-
-export async function deleteFromFavourites(movieId) {
-  const response = await fetch(`${API_URL}/user/favourites`, {
-    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+export const deleteFromFavourites = (movieId) =>
+  fetchJSON(`/user/favourites`, {
     method: 'DELETE',
     body: JSON.stringify({
       movie_id: movieId,
     }),
   });
-  const data = await response.json();
 
-  if (!response.ok || !data.success) {
-    throw new Error(data?.error?.message || 'Failed to delete from favourites');
-  }
+export const checkFavourite = (movieId) =>
+  fetchJSON(`/user/favourites/${movieId}`);
 
-  return data;
-}
-
-export async function checkFavourite(movieId) {
-  const response = await fetch(`${API_URL}/user/favourites/${movieId}`, {
-    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
-  });
-  const data = await response.json();
-
-  if (!response.ok || !data.success) {
-    throw new Error(data?.error?.message || 'Failed to check favourite');
-  }
-
-  return data;
-}
-
-export async function onboard(genres, movies) {
-  const response = await fetch(`${API_URL}/user/onboarding`, {
-    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+export const onboard = (genres, movies) =>
+  fetchJSON(`/user/onboarding`, {
     method: 'POST',
     body: JSON.stringify({
       genres,
       movies,
     }),
   });
-  const data = await response.json();
 
-  if (!response.ok || !data.success) {
-    throw new Error(data?.error?.message || 'Failed to onboard');
-  }
-
-  return data;
-}
-
-export async function getMe() {
-  const response = await fetch(`${API_URL}/user/me`, {
-    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
-  });
-  const data = await response.json();
-
-  if (!response.ok || !data.success) {
-    throw new Error(data?.error?.message || 'Failed to get user data');
-  }
-
-  return data;
-}
+export const getMe = (options = {}) => fetchJSON(`/user/me`, options);

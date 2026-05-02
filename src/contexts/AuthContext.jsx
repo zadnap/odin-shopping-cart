@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { signInUser, signUpUser } from '@/services/auth.api';
+import { signInUser, signUpUser, signOutUser } from '@/services/auth.api';
 import { getMe } from '@/services/user.api';
 
 const AuthContext = createContext();
@@ -11,18 +11,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initAuth = async () => {
-      const token = localStorage.getItem('accessToken');
-
-      if (!token) {
-        setLoading(false);
-        return;
-      }
-
       try {
-        const me = await getMe();
+        const me = await getMe({ skipAuthRefresh: true });
         setUser(me.data);
       } catch {
-        localStorage.removeItem('accessToken');
         setUser(null);
       } finally {
         setLoading(false);
@@ -37,16 +29,10 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      const res = await signInUser(data);
+      await signInUser(data);
 
-      if (res?.access_token) {
-        localStorage.setItem('accessToken', res.access_token);
-
-        const me = await getMe();
-        setUser(me.data);
-      }
-
-      return res;
+      const me = await getMe();
+      setUser(me.data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -68,9 +54,18 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const signOut = () => {
-    localStorage.removeItem('accessToken');
-    setUser(null);
+  const signOut = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      await signOutUser();
+      setUser(null);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const refreshUser = async () => {
