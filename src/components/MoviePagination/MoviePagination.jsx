@@ -25,39 +25,41 @@ function MoviePagination({ page, totalPages, onPrev, onNext, onJump }) {
   };
 
   return (
-    <div className={styles.moviePagination}>
-      <Button
-        square
-        aria-label="View previous page"
-        onClick={onPrev}
-        disabled={page === 1}
-        outline
-      >
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </Button>
+    totalPages > 1 && (
+      <div className={styles.moviePagination}>
+        <Button
+          square
+          aria-label="View previous page"
+          onClick={onPrev}
+          disabled={page === 1}
+          outline
+        >
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </Button>
 
-      <form onSubmit={handleSubmit} className={styles.pageInputForm}>
-        <input
-          type="number"
-          min="1"
-          max={totalPages}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          className={styles.pageInput}
-        />
-        <span className={styles.pageTotal}> of {totalPages}</span>
-      </form>
+        <form onSubmit={handleSubmit} className={styles.pageInputForm}>
+          <input
+            type="number"
+            min="1"
+            max={totalPages}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className={styles.pageInput}
+          />
+          <span className={styles.pageTotal}> of {totalPages}</span>
+        </form>
 
-      <Button
-        square
-        aria-label="View next page"
-        onClick={onNext}
-        disabled={page === totalPages}
-        outline
-      >
-        <FontAwesomeIcon icon={faChevronRight} />
-      </Button>
-    </div>
+        <Button
+          square
+          aria-label="View next page"
+          onClick={onNext}
+          disabled={page === totalPages}
+          outline
+        >
+          <FontAwesomeIcon icon={faChevronRight} />
+        </Button>
+      </div>
+    )
   );
 }
 

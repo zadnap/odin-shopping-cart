@@ -30,7 +30,8 @@ const routes = [
           </OnboardingRedirectGuard>
         ),
         children: [
-          { index: true, element: <Home /> },
+          { index: true, element: <Navigate to="home" replace /> },
+          { path: 'home', element: <Home /> },
           { path: 'movie/:id', element: <Movie /> },
           { path: 'upcoming', element: <Upcoming /> },
           { path: 'trending', element: <Trending /> },

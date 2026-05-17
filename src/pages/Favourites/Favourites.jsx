@@ -2,13 +2,19 @@ import styles from './Favourites.module.scss';
 import FilteredMovieList from '@/components/FilteredMovieList/FilteredMovieList';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import Loader from '@/components/Loader/Loader';
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import useFavourites from '../../hooks/useFavourites';
 import MoviePagination from '../../components/MoviePagination/MoviePagination';
 
 function Favourites() {
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get('page') || '1', 10);
   const { favourites, totalPages, loading, error } = useFavourites(page);
+
+  const handlePageChange = (newPageNum) => {
+    searchParams.set('page', newPageNum);
+    setSearchParams(searchParams);
+  };
 
   return (
     <section className={styles.favoursites}>
@@ -21,15 +27,13 @@ function Favourites() {
       {!loading && !error && (
         <>
           <FilteredMovieList movies={favourites} />
-          {totalPages > 1 && (
-            <MoviePagination
-              page={page}
-              totalPages={totalPages}
-              onPrev={() => setPage((prev) => prev - 1)}
-              onNext={() => setPage((prev) => prev + 1)}
-              onJump={(pageNum) => setPage(pageNum)}
-            />
-          )}
+          <MoviePagination
+            page={page}
+            totalPages={totalPages}
+            onPrev={() => handlePageChange(page - 1)}
+            onNext={() => handlePageChange(page + 1)}
+            onJump={(pageNum) => handlePageChange(pageNum)}
+          />
         </>
       )}
     </section>

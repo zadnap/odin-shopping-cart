@@ -40,8 +40,8 @@ npm install
 
 3. Create an .env file with content
 
-```
-VITE_API_URL=http://127.0.0.1:5000
+```bash
+VITE_API_URL=<web_service_url>
 VITE_ENABLE_ANALYTICS=false
 ```
 

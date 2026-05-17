@@ -3,19 +3,19 @@ import FilteredMovieList from '@/components/FilteredMovieList/FilteredMovieList'
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import MoviePagination from '@/components/MoviePagination/MoviePagination';
-import { useEffect, useState } from 'react';
 import useSearchMovie from '../../hooks/useSearchMovie';
 import { useSearchParams } from 'react-router-dom';
 
 function Search() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get('page') || '1', 10);
   const query = searchParams.get('query');
-  const [page, setPage] = useState(1);
   const { movies, totalPages, loading, error } = useSearchMovie(query, page);
 
-  useEffect(() => {
-    setPage(1);
-  }, [query]);
+  const handlePageChange = (newPageNum) => {
+    searchParams.set('page', newPageNum);
+    setSearchParams(searchParams);
+  };
 
   return (
     <section className={styles.search}>
@@ -28,9 +28,9 @@ function Search() {
           <MoviePagination
             page={page}
             totalPages={totalPages}
-            onPrev={() => setPage((prev) => prev - 1)}
-            onNext={() => setPage((prev) => prev + 1)}
-            onJump={(pageNum) => setPage(pageNum)}
+            onPrev={() => handlePageChange(page - 1)}
+            onNext={() => handlePageChange(page + 1)}
+            onJump={(pageNum) => handlePageChange(pageNum)}
           />
         </>
       )}

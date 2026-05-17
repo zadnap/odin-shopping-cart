@@ -42,7 +42,7 @@ function Navigation({ isOnTablet, isOpenNav, setIsOpenNav }) {
 
   const topItems = [
     {
-      to: '/',
+      to: '/home',
       icon: faHouse,
       title: 'Home',
     },
