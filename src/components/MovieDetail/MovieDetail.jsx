@@ -9,6 +9,7 @@ import fallbackPoster from '@/assets/fallback-poster.jpg';
 import fallbackBackdrop from '@/assets/fallback-backdrop.jpg';
 import useAuth from '../../hooks/useAuth';
 import useFavourite from '../../hooks/useFavourite';
+import { formatRuntime } from '../../utils/time';
 
 function MovieDetail({ movie }) {
   const {
@@ -60,7 +61,7 @@ function MovieDetail({ movie }) {
           </div>
           <p className={styles.movieMeta}>
             <span className={styles.certification}>{certification}</span>{' '}
-            &middot; {releaseDate} &middot; {duration}
+            &middot; {releaseDate} &middot; {formatRuntime(duration)}
           </p>
         </div>
         <ul className={styles.detailList}>
